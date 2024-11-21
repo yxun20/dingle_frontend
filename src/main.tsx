@@ -4,25 +4,18 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import LoginPage from './LoginPage';
-import MainPage from './MainPage';
-
-// 컴포넌트 정의
-const Home = () => <div>Home</div>;
+import LoginPage from 'src/pages/LoginPage.tsx';
+import MainPage from 'src/pages/MainPage.tsx';
 
 const routesConfig = [
   {
     path: '/',
-    element: <Home />, // JSX 컴포넌트를 전달합니다.
+    element: <MainPage />,
   },
   {
     path: '/login',
     element: <LoginPage />,
   },
-  {
-    path: '/main',
-    element: <MainPage />,
-  }
 ];
 
 const router = createBrowserRouter(routesConfig);
