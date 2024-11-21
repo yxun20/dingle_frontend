@@ -4,8 +4,8 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import LoginPage from 'src/pages/LoginPage.tsx';
-import MainPage from 'src/pages/MainPage.tsx';
+import LoginPage from '@/pages/LoginPage.tsx';
+import MainPage from '@/pages/MainPage.tsx';
 
 const routesConfig = [
   {
