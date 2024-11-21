@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import LoginPage from './LoginPage';
-
+import MainPage from './MainPage';
 
 // 컴포넌트 정의
 const Home = () => <div>Home</div>;
@@ -18,6 +18,10 @@ const routesConfig = [
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/main',
+    element: <MainPage />,
   }
 ];
 
