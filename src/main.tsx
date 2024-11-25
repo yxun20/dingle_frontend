@@ -11,7 +11,8 @@ import MonitorPosePage from '@/pages/MonitorPosePage.tsx';
 import MonitorFrequncyPage from '@/pages/MonitorFrequncyPage.tsx';
 import Dashboard from '@/pages/Dashboard.tsx';
 import ScanPage from '@/pages/ScanPage.tsx';
-import InsitePage from './pages/InsightPage';
+import InsitePage from '@/pages/InsightPage';
+import MyPage from '@/pages/MyPage';
 
 const routesConfig = [
   {
@@ -41,6 +42,10 @@ const routesConfig = [
   {
     path: '/insight',
     element: <InsitePage />,
+  },
+  {
+    path: '/mypage',
+    element: <MyPage />,
   }
 ];
 
