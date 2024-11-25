@@ -1,11 +1,14 @@
 import backIcon from '@/assets/backIcon.svg'; // 뒤로가기 아이콘
+import { useNavigate } from 'react-router-dom';
 
 function InsitePage() {
+    const navigate = useNavigate();
+
     return (
         <div className="flex flex-col h-[823px] w-[386px] items-center w-[386px] mx-auto bg-orange-50">
             <div className="w-full flex justify-start mb-4 mt-6 ml-6">
-                <button>
-                <img src={backIcon} alt="Camera Icon" className="w-8 h-8 cursor-pointer" />
+                <button onClick={() => navigate('/dash')}>
+                    <img src={backIcon} alt="Camera Icon" className="w-8 h-8 cursor-pointer" />
                 </button>
             </div>
             <p className="font-bold"> 통계 분석 </p> 
@@ -21,8 +24,7 @@ function InsitePage() {
             </div>
 
         </div>
-    
-  );
+    );
 }
 
 export default InsitePage;
