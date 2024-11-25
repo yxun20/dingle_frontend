@@ -1,5 +1,6 @@
-import backgroundImage from 'src/assets/backgroundImage.svg'; 
-import babyImage from 'src/assets/babyImage.svg'; 
+import backgroundImage from '@/assets/backgroundImage.svg'; // 새로운 배경 이미지를 import합니다.
+import babyImage from '@/assets/babyImage.svg'; // 아기 이미지를 import합니다.
+
 
 function LoginPage() {
   return (
