@@ -1,15 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import babySleepingImage from '../assets/babyImage2.svg';
 import moonSleepingImage from '../assets/sleepingMoonImage.svg';
 import micIcon from '../assets/cameraIcon.svg';
 import musicIcon from '../assets/musicIcon.svg';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-[386px] h-[823px] mx-auto p-5 bg-[#f6efe9] rounded-lg">
       {/* 뒤로가기 버튼 */}
       <div className="flex justify-start mb-5">
-        <button className="w-8 h-8 bg-[#edf8ec] rounded-full flex items-center justify-center cursor-pointer">←</button>
+        <button 
+          className="w-8 h-8 bg-[#edf8ec] rounded-full flex items-center justify-center cursor-pointer"
+          onClick={() => navigate('/')}
+        >
+          ←
+        </button>
       </div>
       
       <div className="text-center mb-5">
@@ -31,7 +39,12 @@ const Dashboard = () => {
         <img src={moonSleepingImage} alt="Sleeping Moon" className="w-24 h-24" />
         <div className="flex flex-col items-start">
           <p className="text-lg mb-2">우리 아이의 오늘 하루<br /><span className="text-green-500">8시간 34분</span> 잔 것 같아요</p>
-          <button className="bg-[#a8dfb9] border-none py-2 px-5 rounded-lg cursor-pointer">통계 분석 보러가기</button>
+          <button 
+            className="bg-[#a8dfb9] border-none py-2 px-5 rounded-lg cursor-pointer"
+            onClick={() => navigate('/insight')}
+          >
+            통계 분석 보러가기
+          </button>
         </div>
       </div>
       <div className="mt-5">
