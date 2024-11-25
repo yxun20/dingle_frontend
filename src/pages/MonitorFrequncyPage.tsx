@@ -1,26 +1,17 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import babyCryingImage from '../assets/babyImage5.jpg';
 import hungerIcon from '../assets/hungerIcon.png';
 import irritationIcon from '../assets/irritationIcon.png';
 import painIcon from '../assets/painIcon.png';
 import sleepinessIcon from '../assets/sleepinessIcon.png';
 import discomfortIcon from '../assets/discomfortIcon.png';
+import BackButton from '@/components/ui/button/backButton';
 
 const MonitorFrequncyPage = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="w-[386px] h-[823px] mx-auto pt-3 pb-5 px-5 bg-[#f6efe9] rounded-lg flex flex-col items-center">
-      {/* 뒤로가기 버튼 */}
-      <div className="w-full flex justify-start mb-2">
-        <button
-          className="w-8 h-8 bg-[#edf8ec] rounded-full flex items-center justify-center cursor-pointer"
-          onClick={() => navigate('/')}
-        >
-          ←
-        </button>
-      </div>
+      {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지'*/}
+      <BackButton to='/'></BackButton>
       
       {/* 모니터링 중 텍스트 */}
       <div className="text-center mb-2">
@@ -35,7 +26,7 @@ const MonitorFrequncyPage = () => {
       
       {/* 울음 실시간 분석 */}
       <div className="w-full max-w-md bg-white p-4 rounded-lg shadow-md mt-2">
-        <h3 className="text-lg font-bold mb-4">울음 실시간 분석</h3>
+        <p className="text-xs font-bold mb-4">울음 실시간 분석</p>
         <div className="flex items-center mb-3">
           <div className="flex flex-col items-center mr-3">
             <img src={hungerIcon} alt="Hunger Icon" className="w-4 h-4" />
