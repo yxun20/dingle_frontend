@@ -11,6 +11,7 @@ import MonitorPosePage from '@/pages/MonitorPosePage.tsx';
 import MonitorFrequncyPage from '@/pages/MonitorFrequncyPage.tsx';
 import Dashboard from '@/pages/Dashboard.tsx';
 import ScanPage from '@/pages/ScanPage.tsx';
+import InsitePage from './pages/InsightPage';
 
 const routesConfig = [
   {
@@ -36,6 +37,10 @@ const routesConfig = [
   {
     path: '/scan',
     element: <ScanPage />,
+  },
+  {
+    path: '/insight',
+    element: <InsitePage />,
   }
 ];
 
