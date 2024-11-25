@@ -1,23 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-import backIcon from '@/assets/backIcon.svg'; // 뒤로가기 아이콘
 import babyProfile from '@/assets/babyprofile.png'; //아기 프로필 이미지
 import momProfile from '@/assets/momprofile.png'; //아기 프로필 이미지
 import dadProfile from '@/assets/dadprofile.png'; //아기 프로필 이미지
 
+import BackButton from '@/components/ui/button/backButton';
+
 function MyPage() {
-    const navigate = useNavigate();
 
     return (
     <div
         className="flex flex-col items-center justify-around h-[823px] w-[386px] mx-auto bg-orange-50"
         style={{ position: 'relative' }}
       >
-      {/* 뒤로가기 버튼*/}
-      <div className="w-full flex justify-start mb-4 mt-6 ml-6">
-        <button onClick={() => navigate('/')}> {/* 뒤로가기 버튼 눌렀을 때 MainPage로 이동 */}
-        <img src={backIcon} alt="Camera Icon" className="w-8 h-8 cursor-pointer" />
-        </button>
-      </div>
+      {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지'*/}
+      <BackButton to='/'></BackButton>
 
     {/* 프로필 카드 3장 */}
 
