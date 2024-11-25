@@ -1,1 +1,1 @@
-//깃 오류 해결 중ㅠ
+import backIcon from '@/assets/back.svg'; // 뒤로가기 아이콘
