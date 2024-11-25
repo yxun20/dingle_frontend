@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import babyCryingImage from '../assets/babyImage5.jpg';
 import hungerIcon from '../assets/hungerIcon.png';
 import irritationIcon from '../assets/irritationIcon.png';
@@ -6,12 +7,19 @@ import painIcon from '../assets/painIcon.png';
 import sleepinessIcon from '../assets/sleepinessIcon.png';
 import discomfortIcon from '../assets/discomfortIcon.png';
 
-const Dashboard = () => {
+const MonitorFrequncyPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-[386px] h-[823px] mx-auto pt-3 pb-5 px-5 bg-[#f6efe9] rounded-lg flex flex-col items-center">
       {/* 뒤로가기 버튼 */}
       <div className="w-full flex justify-start mb-2">
-        <button className="w-8 h-8 bg-[#edf8ec] rounded-full flex items-center justify-center cursor-pointer">←</button>
+        <button
+          className="w-8 h-8 bg-[#edf8ec] rounded-full flex items-center justify-center cursor-pointer"
+          onClick={() => navigate('/')}
+        >
+          ←
+        </button>
       </div>
       
       {/* 모니터링 중 텍스트 */}
@@ -83,4 +91,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default MonitorFrequncyPage;
