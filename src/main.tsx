@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginPage from '@/pages/LoginPage.tsx';
 import MainPage from '@/pages/MainPage.tsx';
 import Dashboard from '@/pages/Dashboard.tsx';
+import ScanPage from '@/pages/ScanPage.tsx';
 
 const routesConfig = [
   {
@@ -18,12 +19,12 @@ const routesConfig = [
     element: <LoginPage />,
   },
   {
-    path: '/main',
-    element: <MainPage />,
-  },
-  {
     path: '/dash',
     element: <Dashboard />,
+  },
+  {
+    path: '/scan',
+    element: <ScanPage />,
   },
 ];
 
