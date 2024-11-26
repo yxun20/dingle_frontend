@@ -1,16 +1,16 @@
-import babyCryingImage from '../assets/babyImage5.jpg';
 import hungerIcon from '../assets/hungerIcon.png';
 import irritationIcon from '../assets/irritationIcon.png';
 import painIcon from '../assets/painIcon.png';
 import sleepinessIcon from '../assets/sleepinessIcon.png';
 import discomfortIcon from '../assets/discomfortIcon.png';
 import BackButton from '@/components/ui/button/backButton';
+import AutoRenderWebcam from '@/components/ui/webcam/AutoRenderWebcam.tsx';
 
 const MonitorFrequencyPage = () => {
   return (
     <div className="w-[386px] h-[823px] mx-auto pt-3 pb-5 px-5 bg-[#f6efe9] rounded-lg flex flex-col items-center">
       {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지'*/}
-      <BackButton to="/"></BackButton>
+      <BackButton to="/" />
 
       {/* 모니터링 중 텍스트 */}
       <div className="text-center mb-2">
@@ -19,7 +19,8 @@ const MonitorFrequencyPage = () => {
 
       {/* 아기 울고 있는 이미지 */}
       <div className="text-center mb-2">
-        <img src={babyCryingImage} alt="Baby Crying" className="w-full max-w-xs h-auto border-4 border-red-500" />
+        <AutoRenderWebcam />
+        {/*<img src={babyCryingImage} alt="Baby Crying" className="w-full max-w-xs h-auto border-4 border-red-500" />*/}
         <p className="text-lg font-bold mt-2">아기가 울고 있어요!</p>
       </div>
 
