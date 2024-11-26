@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import backIcon from '@/assets/backIcon.svg';
 
@@ -8,14 +7,14 @@ interface BackButtonProps {
   className?: string; // 버튼 스타일 클래스
 }
 
-const BackButton: React.FC<BackButtonProps> = ({ to = '/'}) => {
+const BackButton = ({ to = '/', className }: BackButtonProps) => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full flex justify-start mt-4 ml-6">
-        <button onClick={() => navigate(to)}>
-            <img src={backIcon} alt="Back Icon" className="w-8 h-8 cursor-pointer" />
-        </button>
+    <div className={className ? className : 'w-full flex justify-start mb-4'}>
+      <button onClick={() => navigate(to)}>
+        <img src={backIcon} alt="Back Icon" className="w-8 h-8 cursor-pointer" />
+      </button>
     </div>
   );
 };

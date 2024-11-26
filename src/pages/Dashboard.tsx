@@ -7,13 +7,12 @@ import BackButton from '@/components/ui/button/backButton';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  
+
   return (
     <div className="w-[386px] h-[823px] mx-auto p-5 bg-[#f6efe9] rounded-lg">
-      
       {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지'*/}
-      <BackButton to='/'></BackButton>
-      
+      <BackButton to="/" />
+
       <div className="text-center mb-5">
         <img src={babySleepingImage} alt="Baby Sleeping" className="w-full h-auto rounded-lg" />
       </div>
@@ -32,8 +31,12 @@ const Dashboard = () => {
       <div className="flex items-center justify-between bg-white rounded-3xl p-5 shadow-md mb-5">
         <img src={moonSleepingImage} alt="Sleeping Moon" className="w-24 h-24" />
         <div className="flex flex-col items-start">
-          <p className="text-lg mb-2">우리 아이의 오늘 하루<br /><span className="text-green-500">8시간 34분</span> 잔 것 같아요</p>
-          <button 
+          <p className="text-lg mb-2">
+            우리 아이의 오늘 하루
+            <br />
+            <span className="text-green-500">8시간 34분</span> 잔 것 같아요
+          </p>
+          <button
             className="bg-[#a8dfb9] border-none py-2 px-5 rounded-lg cursor-pointer"
             onClick={() => navigate('/insight')}
           >
@@ -47,8 +50,12 @@ const Dashboard = () => {
           <button className="text-sm text-gray-500 cursor-pointer">전체 보기</button>
         </div>
         <ul className="list-none p-0">
-          <li className="bg-[#e0f3eb] p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>1분 전</span></li>
-          <li className="bg-[#e0f3eb] p-3 mb-3 rounded-lg flex justify-between">아이가 뒤집혔어요 <span>31분 전</span></li>
+          <li className="bg-[#e0f3eb] p-3 mb-3 rounded-lg flex justify-between">
+            아이가 울고 있어요 <span>1분 전</span>
+          </li>
+          <li className="bg-[#e0f3eb] p-3 mb-3 rounded-lg flex justify-between">
+            아이가 뒤집혔어요 <span>31분 전</span>
+          </li>
         </ul>
       </div>
     </div>

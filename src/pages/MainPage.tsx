@@ -14,7 +14,7 @@ function MainPage() {
       style={{ position: 'relative' }}
     >
       {/* 상단 카메라와 마이페이지 아이콘 */}
-      <div className="flex justify-between w-full p-4" style={{ position: 'absolute', top: 0 }}>
+      <div className="flex justify-between w-full p-5" style={{ position: 'absolute', top: 0 }}>
         <img
           src={cameraIcon}
           alt="Camera Icon"
