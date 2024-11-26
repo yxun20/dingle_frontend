@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import babyMonitoringImage from '@/assets/babyImage3.png';
 
-const AutoRenderWebcam = () => {
+interface AutoRenderWebcamProps {
+  webcamSize?: { width: number; height: number; facingMode: string };
+}
+
+const AutoRenderWebcam = ({ webcamSize = { width: 320, height: 400, facingMode: 'user' } }: AutoRenderWebcamProps) => {
   const [isWebcamOn, setIsWebcamOn] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -43,7 +47,7 @@ const AutoRenderWebcam = () => {
           />
         </div>
       ) : isWebcamOn ? (
-        <Webcam ref={webcamRef} audio={true} videoConstraints={{ width: 320, height: 400, facingMode: 'user' }} />
+        <Webcam ref={webcamRef} audio={true} videoConstraints={webcamSize} />
       ) : (
         <p>웹캠을 사용할 수 없습니다.</p>
       )}
