@@ -41,7 +41,7 @@ function MainPage() {
             <p className="text-sm text-gray-500">30분 전 배고픔 상태</p>
             <button
               className="mt-2 px-4 py-1 text-sm text-green-500 border border-green-500 rounded-full bg-white"
-              onClick={() => navigate('/monitorFrequency')}
+              onClick={() => navigate('/monitor-frequency')}
             >
               주파수 분석중 <span>&gt;</span>
             </button>
