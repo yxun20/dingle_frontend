@@ -14,19 +14,14 @@ function MainPage() {
       style={{ position: 'relative' }}
     >
       {/* 상단 카메라와 마이페이지 아이콘 */}
-      <div className="flex justify-between w-full p-4" style={{ position: 'absolute', top: 0 }}>
+      <div className="flex justify-between w-full p-5" style={{ position: 'absolute', top: 0 }}>
         <img
           src={cameraIcon}
           alt="Camera Icon"
           className="w-8 h-8 cursor-pointer"
           onClick={() => navigate('/mypage')}
         />
-        <img
-          src={myPageIcon}
-          alt="My Page Icon"
-          className="w-8 h-8 cursor-pointer"
-          onClick={() => navigate('/scan')}
-        />
+        <img src={myPageIcon} alt="My Page Icon" className="w-8 h-8 cursor-pointer" onClick={() => navigate('/scan')} />
       </div>
 
       {/* 중앙의 아기 이미지 */}
@@ -46,7 +41,7 @@ function MainPage() {
             <p className="text-sm text-gray-500">30분 전 배고픔 상태</p>
             <button
               className="mt-2 px-4 py-1 text-sm text-green-500 border border-green-500 rounded-full bg-white"
-              onClick={() => navigate('/monitorFrequency')}
+              onClick={() => navigate('/monitor-frequency')}
             >
               주파수 분석중 <span>&gt;</span>
             </button>
@@ -60,7 +55,7 @@ function MainPage() {
             <p className="text-sm text-gray-500">아이를 확인하러 와주세요</p>
             <button
               className="mt-2 px-4 py-1 text-sm text-red-500 border border-red-500 rounded-full bg-white"
-              onClick={() => navigate('/MonitorPose')}
+              onClick={() => navigate('/monitor-pose')}
             >
               자세 감지중 <span>&gt;</span>
             </button>
