@@ -24,7 +24,7 @@ const routesConfig = [
     element: <LoginPage />,
   },
   {
-    path: '/MonitorPose',
+    path: '/monitor-pose',
     element: <MonitorPosePage />,
   },
   {
@@ -46,7 +46,7 @@ const routesConfig = [
   {
     path: '/mypage',
     element: <MyPage />,
-  }
+  },
 ];
 
 const router = createBrowserRouter(routesConfig);
