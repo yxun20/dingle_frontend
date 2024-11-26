@@ -1,24 +1,20 @@
-import React from 'react';
-
 interface ProfileCardProps {
   name: string; // 프로필 이름
   age?: string; // 나이 (선택적)
   phone?: string; // 전화번호 (선택적)
   description?: string; // 설명 (선택적)
   imgSrc: string; // 이미지 경로
-  cardStyle?: string; // 카드 스타일
-  imageStyle?: string; // 이미지 스타일
   alignment?: 'left' | 'right'; // 정렬 방향 ('left' 또는 'right')
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({
+const ProfileCard = ({
   name,
   age,
   phone,
   description,
   imgSrc,
   alignment = 'left',
-}) => {
+} : ProfileCardProps ) => {
   return (
     <div
       className={`w-[350px] h-1/4 bg-white shadow relative flex items-center ${
