@@ -1,7 +1,9 @@
 import BackButton from '@/components/ui/button/backButton';
 import AutoRenderWebcam from '@/components/ui/webcam/AutoRenderWebcam.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-[386px] h-[823px] mx-auto pt-2 pb-4 px-4 bg-[#f6efe9] rounded-lg flex flex-col items-center">
       {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지'*/}
@@ -24,7 +26,10 @@ const Dashboard = () => {
       </div>
 
       {/* 모니터링 시작하기 버튼 */}
-      <button className="bg-green-500 text-white py-3 px-6 rounded-lg shadow-md w-full mx-5 font-bold mt-6 mb-2">
+      <button
+        className="bg-green-500 text-white py-3 px-6 rounded-lg shadow-md w-full mx-5 font-bold mt-6 mb-2"
+        onClick={() => navigate('/monitor-pose')}
+      >
         모니터링 시작하기
       </button>
     </div>
