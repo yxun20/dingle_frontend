@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import babySleepingImage from '../assets/babyImage2.svg';
 import moonSleepingImage from '../assets/sleepingMoonImage.svg';
-import micIcon from '../assets/cameraIcon.svg';
-import musicIcon from '../assets/musicIcon.svg';
 import BackButton from '@/components/ui/button/backButton';
+import RecordButton from '@/assets/recordbutton.svg';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -16,16 +15,12 @@ const Dashboard = () => {
       <div className="text-center mb-5">
         <img src={babySleepingImage} alt="Baby Sleeping" className="w-full h-auto rounded-lg" />
       </div>
-      <div className="flex justify-between mb-5">
-        <button className="flex flex-col items-center bg-[#a8dfb9] text-white p-4 rounded-lg w-[45%] cursor-pointer">
-          <img src={micIcon} alt="Mic Icon" className="w-8 h-8 mb-2" />
-          <p className="text-center text-xl font-bold">마이크 켜기</p>
-          <p className="text-center text-sm">아이와 소통하세요</p>
+      <div className="flex justify-center mb-5">
+        <button className='w-[45%] drop-shadow-lg m-1 mr-4'>
+          <img className='w-full' src={RecordButton}/>
         </button>
-        <button className="flex flex-col items-center bg-[#a8dfb9] text-white p-4 rounded-lg w-[45%] cursor-pointer">
-          <img src={musicIcon} alt="AI Music Icon" className="w-8 h-8 mb-2" />
-          <p className="text-center text-xl font-bold">AI 노래 자동 재생</p>
-          <p className="text-center text-sm">상황에 맞게 노래를 재생해요</p>
+        <button className='w-[45%] drop-shadow-lg m-1 ml-4'>
+          <img className='w-full' src={RecordButton}/>
         </button>
       </div>
       <div className="flex items-center justify-between bg-white rounded-3xl p-5 shadow-md mb-5">
