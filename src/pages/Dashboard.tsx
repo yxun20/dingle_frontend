@@ -2,7 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import babySleepingImage from '../assets/babyImage2.svg';
 import moonSleepingImage from '../assets/sleepingMoonImage.svg';
 import BackButton from '@/components/ui/button/backButton';
-import RecordButton from '@/assets/recordbutton.svg';
+import RecordButton from '@/assets/dashboardButton/recordButton.svg';
+import RecordButtonAvtive from '@/assets/dashboardButton/recordButtonActive.svg'
+import SongButton from  '@/assets/dashboardButton/songButton.svg';
+import SongButtonActive from '@/assets/dashboardButton/songButtonActive.svg';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -20,7 +23,7 @@ const Dashboard = () => {
           <img className='w-full' src={RecordButton}/>
         </button>
         <button className='w-[45%] drop-shadow-lg m-1 ml-4'>
-          <img className='w-full' src={RecordButton}/>
+          <img className='w-full' src={SongButton}/>
         </button>
       </div>
       <div className="flex items-center justify-between bg-white rounded-3xl p-5 shadow-md mb-5">
