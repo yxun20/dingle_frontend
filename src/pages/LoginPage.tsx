@@ -1,14 +1,34 @@
 import { useNavigate } from 'react-router-dom';
 import backgroundImage from '@/assets/backgroundImage.svg'; // 새로운 배경 이미지를 import합니다.
 import babyImage from '@/assets/babyImage.svg'; // 아기 이미지를 import합니다.
+import axios from 'axios';
+import { useState } from 'react';
 
 function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // 로그인 로직을 여기에 추가합니다 (예: 사용자 인증)
-    // 인증 성공 시 메인 페이지로 이동
-    navigate('/');
+  const handleLogin = async () => {
+    try {
+      // 서버로 로그인 요청
+      const response = await axios.post('http://localhost:8080/auth/login', {
+        username: email,
+        password,
+      });
+
+      // 서버에서 받은 토큰
+      const token = response.data.token;
+
+      // 토큰을 로컬 스토리지에 저장
+      localStorage.setItem('token', token);
+
+      // 인증 성공 시 메인 페이지로 이동
+      navigate('/');
+    } catch (err: any) {
+      console.log('통신 오류');
+      
+    }
   };
 
   return (
@@ -41,6 +61,7 @@ function LoginPage() {
             id="email"
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
             placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
           />
           <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
             <i className="fas fa-envelope"></i>
@@ -58,6 +79,7 @@ function LoginPage() {
             id="password"
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
             placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
           <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
             <i className="fas fa-lock"></i>
