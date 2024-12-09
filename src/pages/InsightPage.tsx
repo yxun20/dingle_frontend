@@ -1,7 +1,75 @@
 import backIcon from '@/assets/backIcon.svg'; // 뒤로가기 아이콘
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import Chart from "react-apexcharts";//그래프 라이브러리
+import { ApexOptions } from "apexcharts";
 
 function InsitePage() {
+
+  /*{ 위험 상황 통계 }*/
+  // Chart options 타입 지정
+  const options1: ApexOptions = {
+    chart: {
+      type: 'bar',
+      height: 350,
+      toolbar: {
+        show: false, // 메뉴 버튼 숨기기
+      },
+    },plotOptions: {
+      bar: {
+        borderRadius: 4,
+        horizontal: true,
+      }
+    },title: {
+      text: '위험 상황',
+      align: 'center'
+    },
+    dataLabels: {
+      enabled: true,
+    },
+    xaxis: {
+      categories: ['낙상 위험', '질식 위험'],
+    }
+    
+  };
+  // Chart series 타입 지정
+  const series1: { data: number[] }[] = [
+    { data: [3, 5] }
+  ];
+
+  /*{ 시간별 울음 횟수 통계 }*/
+  const options2: ApexOptions = {
+    chart: {
+    type: 'line',
+    toolbar: {
+      show: false, // 메뉴 버튼 숨기기
+    },
+  },
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    curve: 'straight'
+  },
+  title: {
+    text: '울음 횟수',
+    align: 'center'
+  },
+  xaxis: {
+    categories: [0,2,4,6,8,10,12,14,16,18,20,22,24],
+    labels: {
+      style: {
+        fontSize: "10px", // 텍스트 크기를 8px로 설정
+      },
+    },
+  }
+  };
+    
+  // Chart series 타입 지정
+  const series2: { data: number[] }[] = [
+    { data: [0,1,3,1,0,0,1,9,1,0,5,2] }
+  ];
+
+
   const navigate = useNavigate();
 
   return (
@@ -23,7 +91,12 @@ function InsitePage() {
       </div>
 
       {/* 통계 데이터 영역 */}
-      <div className="w-80 max-w-md h-60 bg-white shadow rounded-lg mb-6"></div>
+      <div className="w-80 max-w-md h-60 bg-white shadow rounded-lg mb-6">
+        <Chart className="m-3" options={options1} series={series1} type="bar" height={150} />
+      </div>
+      <div className="w-80 max-w-md h-60 bg-white shadow rounded-lg mb-6">
+        <Chart className="m-3" options={options2} series={series2} type="line" height={200} />
+      </div>
 
       {/* 요약 */}
       <div className="w-80 max-w-md text-left">
