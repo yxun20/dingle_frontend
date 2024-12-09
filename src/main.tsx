@@ -13,6 +13,7 @@ import Dashboard from '@/pages/Dashboard.tsx';
 import ScanPage from '@/pages/ScanPage.tsx';
 import InsitePage from '@/pages/InsightPage';
 import MyPage from '@/pages/MyPage';
+import Alerts from '@/pages/Alerts';
 
 const routesConfig = [
   {
@@ -46,6 +47,10 @@ const routesConfig = [
   {
     path: '/mypage',
     element: <MyPage />,
+  },
+  {
+    path: '/alerts',
+    element: <Alerts />,
   },
 ];
 
