@@ -25,9 +25,8 @@ function LoginPage() {
 
       // 인증 성공 시 메인 페이지로 이동
       navigate('/');
-    } catch (err: any) {
+    } catch (err) {
       console.log('통신 오류');
-      
     }
   };
 
@@ -97,7 +96,10 @@ function LoginPage() {
       </div>
       {/* 시작하기 링크 */}
       <div className="text-center w-full max-w-xs" style={{ position: 'relative', zIndex: 1 }}>
-        <a href="#" className="text-sm text-gray-500 hover:underline">
+        <a
+          href="/sign"
+          className="text-sm text-green-500 hover:underline"
+        >
           시작하기
         </a>
       </div>
