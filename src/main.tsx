@@ -13,8 +13,7 @@ import Dashboard from '@/pages/Dashboard.tsx';
 import ScanPage from '@/pages/ScanPage.tsx';
 import InsitePage from '@/pages/InsightPage';
 import MyPage from '@/pages/MyPage';
-import Alerts from '@/pages/Alerts';
-
+import SignupForm from '@/pages/SignupForm';
 const routesConfig = [
   {
     path: '/',
@@ -49,8 +48,8 @@ const routesConfig = [
     element: <MyPage />,
   },
   {
-    path: '/alerts',
-    element: <Alerts />,
+    path: '/sign',
+    element: <SignupForm />,
   },
 ];
 
