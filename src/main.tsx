@@ -14,6 +14,8 @@ import ScanPage from '@/pages/ScanPage.tsx';
 import InsitePage from '@/pages/InsightPage';
 import MyPage from '@/pages/MyPage';
 import SignupForm from '@/pages/SignupForm';
+
+
 const routesConfig = [
   {
     path: '/',

@@ -1,8 +1,17 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 export default {
   darkMode: ['class'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    
+    fontFamily: {
+      sans: ['"Poppins-Medium"', ...defaultTheme.fontFamily.sans],
+      serif: defaultTheme.fontFamily.serif,
+      mono: defaultTheme.fontFamily.mono,
+    },
     extend: {
       borderRadius: {
         lg: 'var(--radius)',
