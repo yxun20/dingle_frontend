@@ -14,7 +14,7 @@ import ScanPage from '@/pages/ScanPage.tsx';
 import InsitePage from '@/pages/InsightPage';
 import MyPage from '@/pages/MyPage';
 import SignupForm from '@/pages/SignupForm';
-
+import Onboarding from '@/pages/Onboarding.tsx';
 
 const routesConfig = [
   {
@@ -52,6 +52,10 @@ const routesConfig = [
   {
     path: '/sign',
     element: <SignupForm />,
+  },
+  {
+    path: '/onboarding',
+    element: <Onboarding />,
   },
 ];
 
