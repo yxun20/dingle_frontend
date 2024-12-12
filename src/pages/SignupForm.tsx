@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import httpClient from '@/lib/client/http-client';
+import { useNavigate } from 'react-router-dom';
 
 const SignupForm = () => {
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,9 +22,29 @@ const SignupForm = () => {
     }));
   };
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    console.log('Form submitted', formData);
+    
+
+    try {
+      // 서버로 회원가입 요청
+      const response = await httpClient.post('/auth/register', {
+        email: formData.email,
+        username: formData.name,
+        password: formData.password,
+      });
+      if (response.status === 200) {
+        console.log('폼 제출 완료:', response.data);
+        alert('회원가입 성공!');
+      }
+      // 인증 성공 시 메인 페이지로 이동
+      navigate('/login');
+      
+    } catch (err) {
+      console.log(err);
+      alert('회원가입 중 문제가 발생했습니다. 다시 시도해주세요.');
+    }
+
   };
 
   return (
@@ -102,7 +127,7 @@ const SignupForm = () => {
 
       {/* 제출 Button */}
       <button
-        type="submit"
+        onClick={handleSubmit}
         className="w-full py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
       >
         계정 생성하기

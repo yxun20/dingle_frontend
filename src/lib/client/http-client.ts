@@ -10,10 +10,11 @@ const httpClient = axios.create({
     console.log('Redirecting...');
   },
 });
-
+const token = useTokenStore.getState().token;
 httpClient.interceptors.request.use(config => {
-  const { token } = useTokenStore();
+  
   if (token) {
+    console.log(token);
     config.headers.Authorization = `Bearer ${token}`;
     config.withCredentials = true;
   } else {
@@ -27,6 +28,7 @@ httpClient.interceptors.response.use(
   error => {
     if (error.response?.status === 403) {
       window.location.href = '/login';
+      alert('로그인에 실패하였습니다. 이메일과 비밀번호를 확인하세요.');
     }
     return Promise.reject(error);
   }

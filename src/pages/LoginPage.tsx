@@ -1,32 +1,39 @@
 import { useNavigate } from 'react-router-dom';
 import backgroundImage from '@/assets/backgroundImage.svg'; // 새로운 배경 이미지를 import합니다.
 import babyImage from '@/assets/babyImage.svg'; // 아기 이미지를 import합니다.
-import axios from 'axios';
+import httpClient from '@/lib/client/http-client';
 import { useState } from 'react';
+import useTokenStore from '@/store/TokenStore'; 
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const setToken = useTokenStore((state) => state.setToken); // Zustand 상태 업데이트 함수
 
-  const handleLogin = async () => {
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault(); // 기본 동작 방지(새로고침)
+    
     try {
       // 서버로 로그인 요청
-      const response = await axios.post('http://localhost:8080/auth/login', {
-        username: email,
-        password,
+      console.log('서버 연결 시작 ');
+      const response = await httpClient.post('/auth/login', {
+        email: email,
+        password: password,
+        
       });
+      console.log('서버 연결 성공');
 
       // 서버에서 받은 토큰
       const token = response.data.token;
-
+      
       // 토큰을 로컬 스토리지에 저장
-      localStorage.setItem('token', token);
+      setToken(token);
 
       // 인증 성공 시 메인 페이지로 이동
       navigate('/');
-    } catch (err) {
-      console.log('통신 오류');
+    } catch (err : any) {
+      console.error('로그인 요청 실패:', err.message);
     }
   };
 
@@ -87,8 +94,7 @@ function LoginPage() {
       </div>
       {/* 로그인 버튼 */}
       <div className="mb-6 w-full max-w-xs" style={{ position: 'relative', zIndex: 1 }}>
-        <button
-          onClick={handleLogin}
+        <button onClick={handleLogin}
           className="w-full p-3 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-700"
         >
           로그인
