@@ -47,8 +47,12 @@ const SignupForm: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      <h2>회원 정보 입력</h2>
-      <p>딩글을 사용하기 위해 회원 정보를 입력해주세요</p>
+      <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '10px' }}>
+        회원 정보 입력
+      </h2>
+      <p style={{ fontSize: '14px', color: '#555', marginBottom: '20px' }}>
+        딩글을 사용하기 위해 회원 정보를 입력해주세요
+      </p>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '15px' }}>
           <label htmlFor="name">우리 아이 이름</label>
