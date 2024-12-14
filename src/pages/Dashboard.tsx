@@ -13,7 +13,7 @@ const Dashboard = () => {
   const [showAlerts, setShowAlerts] = useState(false);
 
   return (
-    <div className="w-[386px] h-[823px] mx-auto p-5 bg-[#f6efe9] rounded-lg relative">
+    <div className="w-[386px] h-[823px] mx-auto p-5 bg-[#E8F8F5] rounded-lg relative">
       {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지' */}
       <BackButton to="/" />
 
