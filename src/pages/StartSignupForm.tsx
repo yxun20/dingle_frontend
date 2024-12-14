@@ -34,6 +34,13 @@ const SignupForm: React.FC = () => {
     navigate('/');
   };
 
+    // 버튼 활성화 여부 결정
+    const isFormValid =
+    name.trim() !== "" &&
+    birthDate.trim() !== "" &&
+    momPhone.replace(/[^0-9]/g, "").length === 11 &&
+    dadPhone.replace(/[^0-9]/g, "").length === 11;
+
   return (
     <div className="w-[386px] h-[823px] p-6 mx-auto border border-gray-300 rounded-lg shadow-lg flex flex-col">
       <div>
@@ -103,7 +110,12 @@ const SignupForm: React.FC = () => {
       <button
         type="submit"
         onClick={handleSubmit}
-        className="w-full py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 mt-auto"
+        disabled={!isFormValid}
+        className={`w-full py-3 rounded-md shadow-md mt-auto focus:outline-none ${
+          isFormValid
+            ? "bg-green-500 text-white hover:bg-green-600 focus:ring-2 focus:ring-green-500"
+            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+        }`}
       >
         Next
       </button>
