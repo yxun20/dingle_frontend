@@ -8,7 +8,7 @@ import BackButton from '@/components/ui/button/backButton';
 const MyPage: React.FC = () => {
   return (
     <div
-      className="flex flex-col items-center justify-around h-[823px] w-[386px] mx-auto bg-orange-50 pt-5"
+      className="flex flex-col items-center justify-around h-[823px] w-[386px] mx-auto bg-[#E8F8F5] pt-5"
       style={{ position: 'relative' }}
     >
       {/* 뒤로가기 버튼 */}
