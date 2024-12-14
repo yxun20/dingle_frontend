@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   const navigate = useNavigate();
   return (
-    <div className="w-[386px] h-[823px] mx-auto pt-2 pb-4 px-4 bg-[#f6efe9] rounded-lg flex flex-col items-center">
+    <div className="w-[386px] h-[823px] mx-auto pt-2 pb-4 px-4 bg-[#E8F8F5] rounded-lg flex flex-col items-center">
       {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지'*/}
       <BackButton to="/" className={'w-full flex justify-start pl-4 mt-4'} />
 
