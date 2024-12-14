@@ -16,6 +16,7 @@ import MyPage from '@/pages/MyPage';
 import SignupForm from '@/pages/SignupForm';
 import Onboarding from '@/pages/Onboarding.tsx';
 import StartSignupForm from '@/pages/StartSignupForm.tsx';
+import './index.css';
 
 const routesConfig = [
   {
