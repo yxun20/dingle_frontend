@@ -63,7 +63,7 @@ function MainPage() {
         </div>
         {/* 하단 아이 보기 버튼 */}
         <button
-          className="w-full py-4 text-white bg-green-400 rounded-md hover:bg-green-500 focus:outline-none focus:bg-green-600"
+          className="w-full py-4 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-700"
           onClick={() => navigate('/dash')}
         >
           아이 보러가기
