@@ -155,7 +155,7 @@ function InsitePage() {
   const [activeTab, setActiveTab] = useState("daily");
 
   return ( 
-    <div className="flex flex-col w-[386px] p-5 h-[823px] items-center  mx-auto bg-[#f6efe9]">
+    <div className="flex flex-col w-[386px] p-5 h-[823px] items-center  mx-auto bg-[#E8F8F5]">
       {/* 뒤로가기 버튼 */}
       <BackButton to="/dash" />
 
