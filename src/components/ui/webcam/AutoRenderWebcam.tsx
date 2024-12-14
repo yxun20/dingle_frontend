@@ -1,20 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import babyMonitoringImage from '@/assets/babyImage3.png';
+import VideoStreamer from '@/components/ui/webcam/VideoStreamer.tsx';
 
 interface AutoRenderWebcamProps {
   webcamSize?: { width: number; height: number; facingMode: string };
+  isWatcher?: boolean;
 }
 
 type ExtendedWebcam = Webcam & {
   stream?: MediaStream;
 };
 
-const AutoRenderWebcam = ({ webcamSize = { width: 320, height: 400, facingMode: 'user' } }: AutoRenderWebcamProps) => {
+const AutoRenderWebcam = ({
+  webcamSize = { width: 320, height: 400, facingMode: 'user' },
+  isWatcher = true,
+}: AutoRenderWebcamProps) => {
   const [isWebcamOn, setIsWebcamOn] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [videoWsState, setVideoWsState] = useState<WebSocket['readyState']>(WebSocket.CLOSED);
-  const [audioWsState, setAudioWsState] = useState<WebSocket['readyState']>(WebSocket.CLOSED);
 
   const webcamRef = useRef<ExtendedWebcam>(null);
   const videoRecorderRef = useRef<MediaRecorder | null>(null);
@@ -56,26 +59,27 @@ const AutoRenderWebcam = ({ webcamSize = { width: 320, height: 400, facingMode: 
 
   useEffect(() => {
     const videoWs = initializeWebSocket(
-      `${import.meta.env.VITE_SOCKET_URL}/video`,
+      `${import.meta.env.VITE_SOCKET_URL}/video?userId=26`,
       () => {
         console.log('Video WebSocket 연결 성공');
-        setVideoWsState(WebSocket.OPEN);
       },
       err => {
         console.error('Video WebSocket 오류:', err);
-        setVideoWsState(WebSocket.CLOSED);
       }
     );
+
+    videoWs.onclose = event => {
+      console.log(event);
+      console.log(`Video WebSocket 닫힘. 코드: ${event.code}, 이유: ${event.reason}`);
+    };
 
     const audioWs = initializeWebSocket(
       `${import.meta.env.VITE_SOCKET_URL}/audio`,
       () => {
         console.log('Audio WebSocket 연결 성공');
-        setAudioWsState(WebSocket.OPEN);
       },
       err => {
         console.error('Audio WebSocket 오류:', err);
-        setAudioWsState(WebSocket.CLOSED);
       }
     );
 
@@ -89,6 +93,20 @@ const AutoRenderWebcam = ({ webcamSize = { width: 320, height: 400, facingMode: 
       audioWsRef.current = null;
     };
   }, []);
+
+  const chunkMessage = (data, chunkSize) => {
+    const chunks = [];
+    const totalSize = data.size;
+    let start = 0;
+
+    while (start < totalSize) {
+      const chunk = data.slice(start, start + chunkSize);
+      chunks.push(chunk);
+      start += chunkSize;
+    }
+
+    return chunks;
+  };
 
   const startStreaming = () => {
     if (!webcamRef.current || !webcamRef.current.stream) {
@@ -107,10 +125,20 @@ const AutoRenderWebcam = ({ webcamSize = { width: 320, height: 400, facingMode: 
 
       videoRecorder.ondataavailable = event => {
         if (event.data.size > 0 && videoWsRef.current?.readyState === WebSocket.OPEN) {
-          videoWsRef.current.send(event.data);
-          console.log('비디오 데이터 전송');
+          const chunkSize = 8 * 1024; // 8KB로 나누기
+          const dataChunks = chunkMessage(event.data, chunkSize);
+
+          dataChunks.forEach(chunk => {
+            if (videoWsRef.current?.readyState === WebSocket.OPEN) {
+              videoWsRef.current.send(chunk);
+            }
+          });
+          console.log('비디오 데이터 전송 완료', event.data);
+        } else {
+          console.log('비디오 전송 실패: WebSocket 상태', videoWsRef.current?.readyState);
         }
       };
+
       videoRecorder.start(1000);
       videoRecorderRef.current = videoRecorder;
     }
@@ -133,22 +161,9 @@ const AutoRenderWebcam = ({ webcamSize = { width: 320, height: 400, facingMode: 
     }
   };
 
-  const stopStreaming = () => {
-    if (videoRecorderRef.current) {
-      videoRecorderRef.current.stop();
-      videoRecorderRef.current = null;
-      console.log('비디오 스트리밍 중지');
-    }
-
-    if (audioRecorderRef.current) {
-      audioRecorderRef.current.stop();
-      audioRecorderRef.current = null;
-      console.log('오디오 스트리밍 중지');
-    }
-  };
-
   return (
     <div className="webcam-container">
+      <button onClick={startStreaming}>스트리밍 시작</button>
       {loading ? (
         <div>
           <p>웹캠 상태를 확인 중...</p>
@@ -158,16 +173,10 @@ const AutoRenderWebcam = ({ webcamSize = { width: 320, height: 400, facingMode: 
             className="w-full max-w-xs h-auto border-4 border-red-500"
           />
         </div>
+      ) : isWatcher ? (
+        <VideoStreamer socketUrl={`${import.meta.env.VITE_SOCKET_URL}/video?userId=26`} />
       ) : isWebcamOn ? (
-        <div>
-          <Webcam ref={webcamRef} audio={true} videoConstraints={webcamSize} />
-          <div className="controls">
-            <button onClick={startStreaming}>스트리밍 시작</button>
-            <button onClick={stopStreaming}>스트리밍 중지</button>
-            <p>Video WebSocket 상태: {videoWsState === WebSocket.OPEN ? '열림' : '닫힘'}</p>
-            <p>Audio WebSocket 상태: {audioWsState === WebSocket.OPEN ? '열림' : '닫힘'}</p>
-          </div>
-        </div>
+        <Webcam ref={webcamRef} videoConstraints={webcamSize} />
       ) : (
         <p>웹캠을 사용할 수 없습니다.</p>
       )}
