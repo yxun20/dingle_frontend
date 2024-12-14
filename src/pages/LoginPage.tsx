@@ -95,7 +95,7 @@ function LoginPage() {
       {/* 로그인 버튼 */}
       <div className="mb-6 w-full max-w-xs" style={{ position: 'relative', zIndex: 1 }}>
         <button onClick={handleLogin}
-          className="w-full p-3 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-700"
+          className="w-full p-3 text-white bg-green-500 rounded-md hover:bg-green-600 mt-auto"
         >
           로그인
         </button>
@@ -104,9 +104,9 @@ function LoginPage() {
       <div className="text-center w-full max-w-xs" style={{ position: 'relative', zIndex: 1 }}>
         <a
           href="/sign"
-          className="text-sm text-green-500 hover:underline"
+          className="text-sm text-green-500 hover:underline "
         >
-          시작하기
+          회원가입하기
         </a>
       </div>
     </div>

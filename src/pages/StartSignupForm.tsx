@@ -35,87 +35,78 @@ const SignupForm: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        width: '386px',
-        height: '823px',
-        padding: '20px',
-        margin: '0 auto',
-        border: '1px solid #ddd',
-        borderRadius: '10px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-        overflow: 'hidden',
-      }}
-    >
-      <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '10px' }}>
-        회원 정보 입력
-      </h2>
-      <p style={{ fontSize: '14px', color: '#555', marginBottom: '20px' }}>
-        딩글을 사용하기 위해 회원 정보를 입력해주세요
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '15px' }}>
-          <label htmlFor="name">우리 아이 이름</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="우리 아이 이름"
-            style={{ width: '100%', padding: '10px', marginTop: '5px' }}
-            required
-          />
-        </div>
-        <div style={{ marginBottom: '15px' }}>
-          <label htmlFor="birthDate">우리 아이 생일</label>
-          <input
-            type="date"
-            id="birthDate"
-            value={birthDate}
-            onChange={(e) => setBirthDate(e.target.value)}
-            style={{ width: '100%', padding: '10px', marginTop: '5px' }}
-            required
-          />
-        </div>
-        <div style={{ marginBottom: '15px' }}>
-          <label htmlFor="momPhone">엄마 전화번호</label>
-          <input
-            type="tel"
-            id="momPhone"
-            value={momPhone}
-            onChange={(e) => handlePhoneInput(e, setMomPhone)}
-            placeholder="010-"
-            style={{ width: '100%', padding: '10px', marginTop: '5px' }}
-            required
-          />
-        </div>
-        <div style={{ marginBottom: '15px' }}>
-          <label htmlFor="dadPhone">아빠 전화번호</label>
-          <input
-            type="tel"
-            id="dadPhone"
-            value={dadPhone}
-            onChange={(e) => handlePhoneInput(e, setDadPhone)}
-            placeholder="010-"
-            style={{ width: '100%', padding: '10px', marginTop: '5px' }}
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          style={{
-            width: '100%',
-            padding: '10px',
-            backgroundColor: '#4caf50',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}
-        >
-          Next
-        </button>
-      </form>
+    <div className="w-[386px] h-[823px] p-6 mx-auto border border-gray-300 rounded-lg shadow-lg flex flex-col">
+      <div>
+        <h2 className="text-2xl font-bold mb-2">회원 정보 입력</h2>
+        <p className="text-sm text-gray-500 mb-5">
+          딩글을 사용하기 위해 회원 정보를 입력해주세요
+        </p>
+        <form>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-sm font-medium">
+              우리 아이 이름
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="우리 아이 이름"
+              className="w-full p-2 mt-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="birthDate" className="block text-sm font-medium">
+              우리 아이 생일
+            </label>
+            <input
+              type="date"
+              id="birthDate"
+              value={birthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
+              className="w-full p-2 mt-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="momPhone" className="block text-sm font-medium">
+              엄마 전화번호
+            </label>
+            <input
+              type="tel"
+              id="momPhone"
+              value={momPhone}
+              onChange={(e) => handlePhoneInput(e, setMomPhone)}
+              placeholder="010-"
+              className="w-full p-2 mt-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="dadPhone" className="block text-sm font-medium">
+              아빠 전화번호
+            </label>
+            <input
+              type="tel"
+              id="dadPhone"
+              value={dadPhone}
+              onChange={(e) => handlePhoneInput(e, setDadPhone)}
+              placeholder="010-"
+              className="w-full p-2 mt-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+        </form>
+      </div>
+
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        className="w-full py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 mt-auto"
+      >
+        Next
+      </button>
     </div>
   );
 };

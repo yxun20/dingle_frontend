@@ -128,7 +128,7 @@ const SignupForm = () => {
       {/* 제출 Button */}
       <button
         onClick={handleSubmit}
-        className="w-full py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+        className="w-full py-3 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 mt-auto"
       >
         계정 생성하기
       </button>
