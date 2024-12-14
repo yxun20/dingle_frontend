@@ -8,7 +8,7 @@ import AutoRenderWebcam from '@/components/ui/webcam/AutoRenderWebcam.tsx';
 
 const MonitorFrequencyPage = () => {
   return (
-    <div className="w-[386px] h-[823px] mx-auto pt-3 pb-5 px-5 bg-[#f6efe9] rounded-lg flex flex-col items-center">
+    <div className="w-[386px] h-[823px] mx-auto pt-3 pb-5 px-5 bg-[#E8F8F5] rounded-lg flex flex-col items-center">
       {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지'*/}
       <BackButton to="/" />
 
