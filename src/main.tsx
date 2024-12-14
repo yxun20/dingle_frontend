@@ -15,6 +15,7 @@ import InsitePage from '@/pages/InsightPage';
 import MyPage from '@/pages/MyPage';
 import SignupForm from '@/pages/SignupForm';
 import Onboarding from '@/pages/Onboarding.tsx';
+import StartSignupForm from '@/pages/StartSignupForm.tsx';
 
 const routesConfig = [
   {
@@ -56,6 +57,10 @@ const routesConfig = [
   {
     path: '/onboarding',
     element: <Onboarding />,
+  },
+  {
+    path: '/StartSignupForm',
+    element: <StartSignupForm />,
   },
 ];
 
