@@ -27,7 +27,7 @@ const Dashboard = () => {
 
       {/* 모니터링 시작하기 버튼 */}
       <button
-        className="bg-green-500 text-white py-3 px-6 rounded-lg shadow-md w-full mx-5 font-bold mt-6 mb-2"
+        className="bg-green-400 text-white py-3 px-6 rounded-lg shadow-md w-full mx-5 font-bold mt-6 mb-2"
         onClick={() => navigate('/monitor-pose')}
       >
         모니터링 시작하기
