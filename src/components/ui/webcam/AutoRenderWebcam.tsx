@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import babyMonitoringImage from '@/assets/babyImage3.png';
 import VideoStreamer from '@/components/ui/webcam/VideoStreamer.tsx';
+import { io } from 'socket.io-client';
 
 interface AutoRenderWebcamProps {
   webcamSize?: { width: number; height: number; facingMode: string };
@@ -22,16 +23,14 @@ const AutoRenderWebcam = ({
   const webcamRef = useRef<ExtendedWebcam>(null);
   const videoRecorderRef = useRef<MediaRecorder | null>(null);
   const audioRecorderRef = useRef<MediaRecorder | null>(null);
-  const videoWsRef = useRef<WebSocket | null>(null);
-  const audioWsRef = useRef<WebSocket | null>(null);
+  const videoWsRef = useRef<any>(null);
+  const audioWsRef = useRef<any>(null);
 
   const initializeWebSocket = (url: string, onOpen: () => void, onError: (error: Event) => void) => {
-    const ws = new WebSocket(url);
-
-    ws.onopen = onOpen;
-    ws.onerror = onError;
-    ws.onclose = () => console.log(`WebSocket 연결 종료: ${url}`);
-    return ws;
+    const socket = io(url, { transports: ['websocket'] });
+    socket.on('connect', onOpen);
+    socket.on('error', onError);
+    return socket;
   };
 
   useEffect(() => {
@@ -59,28 +58,15 @@ const AutoRenderWebcam = ({
 
   useEffect(() => {
     const videoWs = initializeWebSocket(
-      `${import.meta.env.VITE_SOCKET_URL}/video?userId=26`,
-      () => {
-        console.log('Video WebSocket 연결 성공');
-      },
-      err => {
-        console.error('Video WebSocket 오류:', err);
-      }
+      `${import.meta.env.VITE_SOCKET_URL}/video`,
+      () => console.log('Video WebSocket 연결 성공'),
+      err => console.error('Video WebSocket 오류:', err)
     );
-
-    videoWs.onclose = event => {
-      console.log(event);
-      console.log(`Video WebSocket 닫힘. 코드: ${event.code}, 이유: ${event.reason}`);
-    };
 
     const audioWs = initializeWebSocket(
       `${import.meta.env.VITE_SOCKET_URL}/audio`,
-      () => {
-        console.log('Audio WebSocket 연결 성공');
-      },
-      err => {
-        console.error('Audio WebSocket 오류:', err);
-      }
+      () => console.log('Audio WebSocket 연결 성공'),
+      err => console.error('Audio WebSocket 오류:', err)
     );
 
     videoWsRef.current = videoWs;
@@ -94,20 +80,6 @@ const AutoRenderWebcam = ({
     };
   }, []);
 
-  const chunkMessage = (data, chunkSize) => {
-    const chunks = [];
-    const totalSize = data.size;
-    let start = 0;
-
-    while (start < totalSize) {
-      const chunk = data.slice(start, start + chunkSize);
-      chunks.push(chunk);
-      start += chunkSize;
-    }
-
-    return chunks;
-  };
-
   const startStreaming = () => {
     if (!webcamRef.current || !webcamRef.current.stream) {
       console.error('웹캠 스트림을 찾을 수 없습니다.');
@@ -116,54 +88,78 @@ const AutoRenderWebcam = ({
 
     const stream = webcamRef.current.stream;
 
+    console.log('웹캠 스트림:', stream);
+
     // 비디오 트랙 설정
     const videoTracks = stream.getVideoTracks();
+    console.log('비디오 트랙:', videoTracks);
     if (videoTracks.length > 0) {
       const videoRecorder = new MediaRecorder(new MediaStream(videoTracks), {
         mimeType: 'video/webm; codecs=vp9',
       });
 
       videoRecorder.ondataavailable = event => {
-        if (event.data.size > 0 && videoWsRef.current?.readyState === WebSocket.OPEN) {
-          const chunkSize = 8 * 1024; // 8KB로 나누기
-          const dataChunks = chunkMessage(event.data, chunkSize);
+        if (event.data.size > 0) {
+          const message = {
+            userId: 26,
+            video: event.data,
+          };
 
-          dataChunks.forEach(chunk => {
-            if (videoWsRef.current?.readyState === WebSocket.OPEN) {
-              videoWsRef.current.send(chunk);
-            }
-          });
-          console.log('비디오 데이터 전송 완료', event.data);
-        } else {
-          console.log('비디오 전송 실패: WebSocket 상태', videoWsRef.current?.readyState);
+          videoWsRef.current.emit('video-stream', message);
+          console.log('비디오 데이터 전송 완료');
         }
       };
 
       videoRecorder.start(1000);
       videoRecorderRef.current = videoRecorder;
     }
+  };
 
-    // 오디오 트랙 설정
-    const audioTracks = stream.getAudioTracks();
-    if (audioTracks.length > 0) {
-      const audioRecorder = new MediaRecorder(new MediaStream(audioTracks), {
-        mimeType: 'audio/webm; codecs=opus',
-      });
+  const captureAndSendPng = () => {
+    if (!webcamRef.current) {
+      console.error('웹캠 참조가 초기화되지 않았습니다.');
+      return;
+    }
 
-      audioRecorder.ondataavailable = event => {
-        if (event.data.size > 0 && audioWsRef.current?.readyState === WebSocket.OPEN) {
-          audioWsRef.current.send(event.data);
-          console.log('오디오 데이터 전송');
-        }
+    const screenshot = webcamRef.current.getScreenshot();
+    if (screenshot) {
+      // Base64 데이터를 Blob으로 변환
+      const binary = atob(screenshot.split(',')[1]);
+      const array = Uint8Array.from(binary, char => char.charCodeAt(0));
+      const pngBlob = new Blob([array], { type: 'image/png' });
+
+      // Blob을 ArrayBuffer로 읽기
+      const reader = new FileReader();
+      reader.readAsArrayBuffer(pngBlob);
+
+      reader.onload = () => {
+        const message = {
+          userId: 26,
+          image: reader.result,
+        };
+
+        videoWsRef.current.emit('png', message);
       };
-      audioRecorder.start(1000);
-      audioRecorderRef.current = audioRecorder;
+    } else {
+      console.error('스크린샷 생성 실패');
     }
   };
 
+  useEffect(() => {
+    if (isWebcamOn) {
+      setTimeout(() => startStreaming(), 5000); // 5초 후 시작
+
+      // 일정 간격으로 PNG 캡처 및 전송
+      const pngInterval = setInterval(() => {
+        captureAndSendPng();
+      }, 5000); // 5초 간격
+
+      return () => clearInterval(pngInterval);
+    }
+  }, [isWebcamOn]);
+
   return (
     <div className="webcam-container">
-      <button onClick={startStreaming}>스트리밍 시작</button>
       {loading ? (
         <div>
           <p>웹캠 상태를 확인 중...</p>
@@ -174,9 +170,9 @@ const AutoRenderWebcam = ({
           />
         </div>
       ) : isWatcher ? (
-        <VideoStreamer socketUrl={`${import.meta.env.VITE_SOCKET_URL}/video?userId=26`} />
+        <VideoStreamer socketUrl={`${import.meta.env.VITE_SOCKET_URL}/video`} />
       ) : isWebcamOn ? (
-        <Webcam ref={webcamRef} videoConstraints={webcamSize} />
+        <Webcam ref={webcamRef} screenshotFormat="image/png" videoConstraints={webcamSize} />
       ) : (
         <p>웹캠을 사용할 수 없습니다.</p>
       )}
