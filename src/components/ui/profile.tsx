@@ -30,17 +30,13 @@ const ProfileCard = ({
         {age && <p className="text-sm">{age}</p>}
         {phone && <p className="text-black text-sm">{phone}</p>}
         {description && <p className="text-gray-400 text-xs">{description}</p>}
-       
-          <button className="text-xs text-gray-400 mt-4" disabled>
-            수정하기
-          </button>
+      
         
       </div>
 
       {alignment === 'right' && (
         <img src={imgSrc} className="rounded-full w-[110px] h-[110px] m-5" alt={`${name} profile`} />
       )}
-      <button className="absolute top-2 right-2 text-gray-400">&times;</button>
     </div>
   );
 };

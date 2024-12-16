@@ -1,3 +1,4 @@
+import httpClient from '@/lib/client/http-client';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,10 +29,33 @@ const SignupForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ name, birthDate, momPhone, dadPhone });
-    navigate('/');
+    const requestBody = {
+      baby: {
+        babyName: name,
+        birthDate: birthDate,
+      },
+      parentContacts: [
+        {
+          momPhoneNumber: momPhone,
+          dadPhoneNumber: dadPhone,
+        },
+      ],
+    };
+     try {
+      // POST 요청으로 데이터 전송
+      const response = await httpClient.post('/users/me', requestBody);
+      console.log('유저데이터 저장 성공:', response.data);
+
+      // 성공 시 페이지 이동
+      navigate('/');
+    } catch (error) {
+      console.error('서버 연결 실패 :', error);
+      alert('문제가 발생했습니다. 다시 시도해주세요.');
+    }
+  
   };
 
     // 버튼 활성화 여부 결정
