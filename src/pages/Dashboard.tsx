@@ -34,7 +34,7 @@ const Dashboard = () => {
           <p className="text-lg mb-2">
             우리 아이의 오늘 하루
             <br />
-            <span className="text-green-500">8시간 34분</span> 잔 것 같아요
+            <span className="text-green-500">배고파서</span> 많이 울었어요
           </p>
           <button
             className="bg-[#AAF8B3] border-none py-2 px-5 rounded-lg cursor-pointer"
