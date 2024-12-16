@@ -95,7 +95,7 @@ function LoginPage() {
       {/* 로그인 버튼 */}
       <div className="mb-6 w-full max-w-xs" style={{ position: 'relative', zIndex: 1 }}>
         <button onClick={handleLogin}
-          className="w-full p-3 text-white bg-green-450 rounded-md hover:bg-green-550 mt-auto"
+          className="w-full p-3 text-white bg-green-500 rounded-md hover:bg-green-600 mt-auto"
         >
           로그인
         </button>
