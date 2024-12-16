@@ -17,11 +17,15 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
+      host: '0.0.0.0', // 네트워크 전체에서 접근 가능
+      port: 3000, // 원하는 포트 설정
+
       proxy: {
         '/api': {
           target: API_BASE_URL,
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, ''),
+          
         },
       },
     },

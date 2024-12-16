@@ -46,15 +46,13 @@ const MyPage = () => {
   };
 
   return (
-    <div
-      className="flex flex-col items-center justify-around h-[823px] w-[386px] mx-auto bg-[#E8F8F5] pt-5"
-      style={{ position: 'relative' }}
-    >
-      {/* 뒤로가기 버튼 */}
-      <BackButton to="/" className={'w-full flex justify-start pl-5'} />
+    <div className="w-[386px] h-[823px] mx-auto pt-2 pb-4 px-4 bg-[#E8F8F5] rounded-lg flex flex-col items-center">
       
-      {/* 프로필 카드 섹션 */}
-      <div className="flex flex-col items-center justify-around h-[823px] w-[386px] p-20">
+      {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지'*/}
+      <BackButton to="/" className={'w-full flex justify-start pl-4 mt-4'} />
+      
+        {/* 프로필 카드 섹션 */}
+      <div className="flex flex-col items-center justify-around p-20">
         {/* 아기 프로필 */}
         <ProfileCard
           name={babyName}
@@ -82,10 +80,11 @@ const MyPage = () => {
         />
       </div>
       
+    
       {/* 수정 버튼 */}
       <button
         onClick={handleEditClick}
-        className="text-sm text-blue-500 py-7 bg-transparent hover:underline"
+        className="text-sm text-blue-500 mt-auto hover:underline"
       >
         수정하기
       </button>

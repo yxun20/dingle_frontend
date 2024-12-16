@@ -17,7 +17,7 @@ const ProfileCard = ({
 } : ProfileCardProps ) => {
   return (
     <div
-      className={`w-[350px] h-1/4 bg-white shadow relative flex items-center ${
+      className={`w-[350px] h-1/4 bg-white shadow relative flex items-center mb-10 ${
         alignment === 'left' ? 'justify-start rounded-l-3xl ml-9' : 'justify-end rounded-r-3xl mr-9'
       } `}
     >
