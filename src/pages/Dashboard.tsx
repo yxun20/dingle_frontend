@@ -1,16 +1,57 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import babySleepingImage from '../assets/babyImage2.svg';
 import moonSleepingImage from '../assets/sleepingMoonImage.svg';
 import BackButton from '@/components/ui/button/backButton';
 import RecordButton from '@/assets/dashboardButton/recordButton.svg';
-import RecordButtonAvtive from '@/assets/dashboardButton/recordButtonActive.svg';
+import RecordButtonActive from '@/assets/dashboardButton/recordButtonActive.svg';
 import SongButton from '@/assets/dashboardButton/songButton.svg';
 import SongButtonActive from '@/assets/dashboardButton/songButtonActive.svg';
+import httpClient from '@/lib/client/http-client';
+import music from '@/assets/music/good-night-melody-piano-245836.mp3'
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [isRecording, setIsRecording] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [showAlerts, setShowAlerts] = useState(false);
+
+  //녹음 기능
+  const handleRecordClick = async () => {
+    /* 
+    if (isRecording) {
+      // 녹음 종료 및 서버로 전송
+      console.log('녹음 종료 및 서버 전송 중...');
+      try {
+        await httpClient.post('/api/saveRecording', { data: '녹음 데이터' }); // 서버 요청
+        console.log('녹음 데이터 서버 전송 성공');
+      } catch (error) {
+        console.error('녹음 데이터 서버 전송 실패:', error);
+      }
+    } else {
+      // 녹음 시작
+      console.log('녹음 시작');
+    }  */
+    // 상태 토글
+    setIsRecording((prev) => !prev);
+  };
+
+  //음악 기능
+  const audioRef = useRef(new Audio(music));
+  const handleSongClick = () => {
+    if (isPlaying) {
+      // 노래 정지
+      console.log('노래 재생 정지');
+      audioRef.current.pause();
+    } else {
+      // 노래 재생
+      console.log('노래 재생 시작');
+      audioRef.current.play(); // 음악 재생
+    }
+    // 상태 토글
+    setIsPlaying((prev) => !prev);
+  };
+
 
   return (
     <div className="w-[386px] h-[823px] mx-auto p-5 bg-[#E8F8F5] rounded-lg relative">
@@ -20,12 +61,19 @@ const Dashboard = () => {
       <div className="text-center mb-5">
         <img src={babySleepingImage} alt="Baby Sleeping" className="w-full h-auto rounded-lg" />
       </div>
-      <div className="flex justify-center mb-5">
-        <button className="w-[45%] drop-shadow-lg m-1 mr-4">
-          <img className="w-full" src={RecordButton} />
+       {/* 녹음 버튼 및 노래 버튼 */}
+       <div className="flex justify-center mb-5">
+        <button
+          className="w-[45%] drop-shadow-lg m-1 mr-4"
+          onClick={handleRecordClick}
+        >
+          <img className="w-full" src={isRecording ? RecordButtonActive : RecordButton} />
         </button>
-        <button className="w-[45%] drop-shadow-lg m-1 ml-4">
-          <img className="w-full" src={SongButton} />
+        <button
+          className="w-[45%] drop-shadow-lg m-1 ml-4"
+          onClick={handleSongClick}
+        >
+          <img className="w-full" src={isPlaying ? SongButtonActive : SongButton} />
         </button>
       </div>
       <div className="flex items-center justify-between bg-white rounded-3xl p-5 shadow-md mb-5">

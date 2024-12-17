@@ -30,8 +30,22 @@ function LoginPage() {
       // 토큰을 로컬 스토리지에 저장
       setToken(token);
 
-      // 인증 성공 시 메인 페이지로 이동
-      navigate('/');
+      // 유저 정보 가져오기
+      const userInfoResponse = await httpClient.get('/users/me', {
+        headers: {
+          Authorization: `Bearer ${token}`, // 토큰 포함
+        },
+      });
+
+      const userInfo = userInfoResponse.data;
+
+      // babyName이 비어있으면 유저 데이터 입력 화면으로 이동
+      if (!userInfo.baby?.babyName) {
+        navigate('/user-input'); // 유저 데이터 입력 화면으로 이동
+      } else {
+        // 인증 성공 시 메인 페이지로 이동
+        navigate('/');
+      }
     } catch (err : any) {
       console.error('로그인 요청 실패:', err.message);
     }
