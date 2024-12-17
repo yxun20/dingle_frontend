@@ -1,9 +1,10 @@
 import BackButton from '@/components/ui/button/backButton';
-import AutoRenderWebcam from '@/components/ui/webcam/AutoRenderWebcam.tsx';
 import { useNavigate } from 'react-router-dom';
+import { FileUploader } from '@/components/ui/button/fileUploader.tsx';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
   return (
     <div className="w-[386px] h-[823px] mx-auto pt-2 pb-4 px-4 bg-[#E8F8F5] rounded-lg flex flex-col items-center">
       {/* 뒤로가기 버튼 컴포넌트 to='이동할 페이지'*/}
@@ -15,8 +16,8 @@ const Dashboard = () => {
       </div>
 
       {/* 아기 이미지 */}
-      <div className="text-center mb-8">
-        <AutoRenderWebcam />
+      <div className="text-center mb-4">
+        <FileUploader />
       </div>
 
       {/* 안내 텍스트 */}

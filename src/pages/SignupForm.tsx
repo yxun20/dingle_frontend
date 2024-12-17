@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import httpClient from '@/lib/client/http-client';
 import { useNavigate } from 'react-router-dom';
 
 const SignupForm = () => {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -14,17 +13,16 @@ const SignupForm = () => {
     agreedToTerms: false,
   });
 
-  const handleChange = (e: { target: { name: any; value: any; type: any; checked: any; }; }) => {
+  const handleChange = (e: { target: { name: any; value: any; type: any; checked: any } }) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prevData) => ({
+    setFormData(prevData => ({
       ...prevData,
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    
 
     try {
       // 서버로 회원가입 요청
@@ -39,12 +37,10 @@ const SignupForm = () => {
       }
       // 인증 성공 시 메인 페이지로 이동
       navigate('/login');
-      
     } catch (err) {
       console.log(err);
       alert('회원가입 중 문제가 발생했습니다. 다시 시도해주세요.');
     }
-
   };
 
   return (
@@ -55,7 +51,9 @@ const SignupForm = () => {
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           {/* Name Input */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Name
+            </label>
             <input
               type="text"
               id="name"
@@ -68,7 +66,9 @@ const SignupForm = () => {
 
           {/* Email Input */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Email Address
+            </label>
             <input
               type="email"
               id="email"
@@ -82,7 +82,9 @@ const SignupForm = () => {
 
           {/* Password Input */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
             <input
               type="password"
               id="password"
@@ -96,7 +98,9 @@ const SignupForm = () => {
 
           {/* Confirm Password Input */}
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              Confirm Password
+            </label>
             <input
               type="password"
               id="confirmPassword"
@@ -119,7 +123,8 @@ const SignupForm = () => {
               className="h-4 w-4 text-green-500 border-gray-300 rounded focus:ring-green-500"
             />
             <label htmlFor="agreedToTerms" className="ml-2 text-sm text-gray-700">
-              저는 <span className="text-green-500">규정안내</span>를 숙지하였으며 <span className="text-green-500">동의합니다</span>.
+              저는 <span className="text-green-500">규정안내</span>를 숙지하였으며{' '}
+              <span className="text-green-500">동의합니다</span>.
             </label>
           </div>
         </form>
