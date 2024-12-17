@@ -27,8 +27,7 @@ httpClient.interceptors.response.use(
   response => response,
   error => {
     if (error.response?.status === 403) {
-      window.location.href = '/login';
-      alert('로그인에 실패하였습니다. 이메일과 비밀번호를 확인하세요.');
+      alert('403 에러');
     }
     return Promise.reject(error);
   }

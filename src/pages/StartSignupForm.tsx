@@ -2,7 +2,7 @@ import httpClient from '@/lib/client/http-client';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SignupForm: React.FC = () => {
+const StartSignupForm: React.FC = () => {
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [momPhone, setMomPhone] = useState('010-');
@@ -37,16 +37,15 @@ const SignupForm: React.FC = () => {
         babyName: name,
         birthDate: birthDate,
       },
-      parentContacts: [
+      parentContacts:
         {
           momPhoneNumber: momPhone,
           dadPhoneNumber: dadPhone,
-        },
-      ],
+        }
     };
      try {
       // POST 요청으로 데이터 전송
-      const response = await httpClient.post('/users/me', requestBody);
+      const response = await httpClient.post('/users/me/details', requestBody);
       console.log('유저데이터 저장 성공:', response.data);
 
       // 성공 시 페이지 이동
@@ -147,4 +146,4 @@ const SignupForm: React.FC = () => {
   );
 };
 
-export default SignupForm;
+export default StartSignupForm;

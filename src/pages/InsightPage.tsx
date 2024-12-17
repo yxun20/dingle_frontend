@@ -155,7 +155,6 @@ function InsitePage() {
           <p className="text-xs text-gray-600">일주일간 18건</p>
         </div>
       </div>
-
     </div>
   );
 }

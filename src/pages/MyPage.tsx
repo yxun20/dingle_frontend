@@ -8,19 +8,19 @@ import httpClient from '@/lib/client/http-client';
 
 const MyPage = () => {
   const [babyName, setBabyName] = useState('아기이름');
-  const [babyAge, setBabyAge] = useState('생후 0일');
+  const [birthDate, setBirthDate] = useState('생후 0일');
   const [momPhone, setMomPhone] = useState('긴급연락처를 적어주세요');
   const [dadPhone, setDadPhone] = useState('긴급연락처를 적어주세요');
   const [isEditing, setIsEditing] = useState(false); // 수정 모달 표시 상태
 
-  /*{useEffect(() => {
+  useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await httpClient.post('/users/me');
+        const response = await httpClient.get('/users/me');
         const { baby, parentContacts } = response.data;
 
         setBabyName(baby?.babyName || '아기이름');
-        setBabyAge(baby?.birthDate || '생후 0일');
+        setBirthDate(baby?.birthDate || '생후 0일');
         setMomPhone(parentContacts?.momPhoneNumber || '긴급연락처를 적어주세요');
         setDadPhone(parentContacts?.dadPhoneNumber || '긴급연락처를 적어주세요');
       } catch (error) {
@@ -29,15 +29,34 @@ const MyPage = () => {
     };
 
     fetchProfileData();
-  }, []); }*/
+  }, []); 
 
   const handleEditClick = () => {
     setIsEditing(true); // 모달 열기
   };
 
-  const handleSave = () => {
-    // 저장 로직 추가 (서버에 데이터 전송)
-    console.log('수정 데이터 저장:', { babyName, babyAge, momPhone, dadPhone });
+  const handleSave = async () => {
+    const requestBody = {
+      baby: {
+        babyName: babyName,
+        birthDate: birthDate,
+      },
+      parentContacts:{
+        momPhoneNumber: momPhone,
+        dadPhoneNumber: dadPhone,
+      }
+    };
+    try {
+      // POST 요청으로 데이터 전송
+      const response = await httpClient.post('/users/me', requestBody);
+      console.log('유저데이터 저장 성공:', response.data);
+
+    } catch (error) {
+      console.error('서버 연결 실패 :', error);
+      alert('문제가 발생했습니다. 다시 시도해주세요.');
+      console.log('수정 데이터 저장:', { babyName, birthDate, momPhone, dadPhone });
+    }
+    console.log('수정 데이터 저장:', { babyName, birthDate, momPhone, dadPhone });
     setIsEditing(false); // 모달 닫기
   };
 
@@ -56,7 +75,7 @@ const MyPage = () => {
         {/* 아기 프로필 */}
         <ProfileCard
           name={babyName}
-          age={babyAge}
+          age={birthDate}
           imgSrc={babyProfile}
           alignment="left"
         />
@@ -118,8 +137,8 @@ const MyPage = () => {
                 <input
                   type="date"
                   id="birthDate"
-                  value={babyAge}
-                  onChange={(e) => setBabyAge(e.target.value)}
+                  value={birthDate}
+                  onChange={(e) => setBirthDate(e.target.value)}
                   className="w-full p-2 mt-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />

@@ -103,16 +103,16 @@ const Dashboard = () => {
           </button>
         </div>
         <ul className="list-none p-0 h-40 overflow-y-scroll">
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>1분 전</span></li>
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 뒤집혔어요 <span>31분 전</span></li>
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>57분 전</span></li>
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>1시간 2분 전</span></li>
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">프레임 주위로 갔어요 <span>2시간 10분 전</span></li>
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>3시간 23분 전</span></li>
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 뒤집혔어요 <span>5시간 47분 전</span></li>
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>7시간 29분 전</span></li>
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>8시간 40분 전</span></li>
-          <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>9시간 12분 전</span></li>
+        <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요<span className="text-xs text-gray-600">1분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 뒤집혔어요 <span className="text-xs text-gray-600">31분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">57분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">1시간 2분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">프레임 주위로 갔어요 <span className="text-xs text-gray-600">2시간 10분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">3시간 23분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 뒤집혔어요 <span className="text-xs text-gray-600">5시간 47분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">7시간 29분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">8시간 40분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">9시간 12분 전</span></li>
         </ul>
       </div>
 
@@ -130,16 +130,16 @@ const Dashboard = () => {
               </button>
             </div>
             <ul className="list-none p-0">
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>1분 전</span></li>
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 뒤집혔어요 <span>31분 전</span></li>
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>57분 전</span></li>
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>1시간 2분 전</span></li>
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">프레임 주위로 갔어요 <span>2시간 10분 전</span></li>
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>3시간 23분 전</span></li>
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 뒤집혔어요 <span>5시간 47분 전</span></li>
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>7시간 29분 전</span></li>
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>8시간 40분 전</span></li>
-              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span>9시간 12분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요<span className="text-xs text-gray-600">1분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 뒤집혔어요 <span className="text-xs text-gray-600">31분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">57분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">1시간 2분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">프레임 주위로 갔어요 <span className="text-xs text-gray-600">2시간 10분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">3시간 23분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 뒤집혔어요 <span className="text-xs text-gray-600">5시간 47분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">7시간 29분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">8시간 40분 전</span></li>
+              <li className="bg-green-200 p-3 mb-3 rounded-lg flex justify-between">아이가 울고 있어요 <span className="text-xs text-gray-600">9시간 12분 전</span></li>
             </ul>
           </div>
         </div>

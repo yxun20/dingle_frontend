@@ -31,17 +31,13 @@ function LoginPage() {
       setToken(token);
 
       // 유저 정보 가져오기
-      const userInfoResponse = await httpClient.get('/users/me', {
-        headers: {
-          Authorization: `Bearer ${token}`, // 토큰 포함
-        },
-      });
+      const userInfoResponse = await httpClient.get('/users/me');
 
       const userInfo = userInfoResponse.data;
 
       // babyName이 비어있으면 유저 데이터 입력 화면으로 이동
-      if (!userInfo.baby?.babyName) {
-        navigate('/user-input'); // 유저 데이터 입력 화면으로 이동
+      if (userInfo?.baby === null) {
+        navigate('/startsignupform'); // 유저 데이터 입력 화면으로 이동
       } else {
         // 인증 성공 시 메인 페이지로 이동
         navigate('/');
