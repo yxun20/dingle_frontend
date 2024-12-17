@@ -3,8 +3,9 @@ import irritationIcon from '../assets/irritationIcon.png';
 import painIcon from '../assets/painIcon.png';
 import sleepinessIcon from '../assets/sleepinessIcon.png';
 import discomfortIcon from '../assets/discomfortIcon.png';
+import babyCryingImage from '@/assets/babyImage3.png';
+
 import BackButton from '@/components/ui/button/backButton';
-import AutoRenderWebcam from '@/components/ui/webcam/AutoRenderWebcam.tsx';
 
 const MonitorFrequencyPage = () => {
   return (
@@ -19,8 +20,7 @@ const MonitorFrequencyPage = () => {
 
       {/* 아기 울고 있는 이미지 */}
       <div className="text-center mb-2">
-        <AutoRenderWebcam />
-        {/*<img src={babyCryingImage} alt="Baby Crying" className="w-full max-w-xs h-auto border-4 border-red-500" />*/}
+        <img src={babyCryingImage} alt="Baby Crying" className="w-full max-w-xs h-auto border-4 border-red-500" />
         <p className="text-lg font-bold mt-2">아기가 울고 있어요!</p>
       </div>
 

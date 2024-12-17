@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import babyMonitoringImage from '@/assets/babyImage3.png';
-import VideoStreamer from '@/components/ui/webcam/VideoStreamer.tsx';
 import { io } from 'socket.io-client';
 
 interface AutoRenderWebcamProps {
@@ -13,16 +12,12 @@ type ExtendedWebcam = Webcam & {
   stream?: MediaStream;
 };
 
-const AutoRenderWebcam = ({
-  webcamSize = { width: 320, height: 400, facingMode: 'user' },
-  isWatcher = true,
-}: AutoRenderWebcamProps) => {
+const AutoRenderWebcam = ({ webcamSize = { width: 320, height: 400, facingMode: 'user' } }: AutoRenderWebcamProps) => {
   const [isWebcamOn, setIsWebcamOn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const webcamRef = useRef<ExtendedWebcam>(null);
   const videoRecorderRef = useRef<MediaRecorder | null>(null);
-  const audioRecorderRef = useRef<MediaRecorder | null>(null);
   const videoWsRef = useRef<any>(null);
   const audioWsRef = useRef<any>(null);
 
@@ -169,8 +164,6 @@ const AutoRenderWebcam = ({
             className="w-full max-w-xs h-auto border-4 border-red-500"
           />
         </div>
-      ) : isWatcher ? (
-        <VideoStreamer socketUrl={`${import.meta.env.VITE_SOCKET_URL}/video`} />
       ) : isWebcamOn ? (
         <Webcam ref={webcamRef} screenshotFormat="image/png" videoConstraints={webcamSize} />
       ) : (
