@@ -16,7 +16,9 @@ export const FileUploader = () => {
   return (
     <div>
       {videoUrl ? (
-        <video src={videoUrl} autoPlay />
+        <div className={'w-[320px] h-[400px]'}>
+          <video src={videoUrl} autoPlay loop />
+        </div>
       ) : (
         <div onClick={handleClick}>
           <button className="pt-5 px-3 w-[320px] h-[400px] flex place-content-center place-items-center rounded-md no-underline text-white text-xl font-bold bg-primary hover:bg-white hover:text-primary hover:border-primary border-4">

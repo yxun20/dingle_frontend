@@ -15,6 +15,7 @@ import MyPage from '@/pages/MyPage';
 import SignupForm from '@/pages/SignupForm';
 import Onboarding from '@/pages/Onboarding.tsx';
 import StartSignupForm from '@/pages/StartSignupForm.tsx';
+import MonitorPosePage from './pages/MonitorPosePage';
 
 const routesConfig = [
   {
@@ -52,6 +53,10 @@ const routesConfig = [
   {
     path: '/onboarding',
     element: <Onboarding />,
+  },
+  {
+    path: 'monitor-pose',
+    element: <MonitorPosePage />,
   },
   {
     path: '/StartSignupForm',
