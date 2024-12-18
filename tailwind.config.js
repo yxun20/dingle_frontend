@@ -6,7 +6,6 @@ export default {
   darkMode: ['class'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    
     fontFamily: {
       sans: ['"Poppins-Medium"', ...defaultTheme.fontFamily.sans],
       serif: defaultTheme.fontFamily.serif,
@@ -62,5 +61,19 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('tailwindcss-truncate-multiline'), require('tailwindcss-animate')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwindcss-truncate-multiline'),
+    require('tailwindcss-animate'),
+    require('tailwind-scrollbar'), 
+    function ({ addUtilities }) {
+      addUtilities({
+        '.no-scrollbar-buttons': {
+          '::-webkit-scrollbar-button': {
+            display: 'none', /* 위아래 화살표 숨기기 */
+          },
+        },
+      });
+    }
+  ],
 };
