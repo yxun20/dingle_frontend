@@ -7,12 +7,25 @@ import "react-datepicker/dist/react-datepicker.css";
 import BackButton from '@/components/ui/button/backButton';
 import "@/components/ui/datePicker.css";
 
+//일별 로그 데이터
 interface Post {
   id: number;
   date: string;
   time: string;
   type: string;
   comment: string;
+}
+//요약 데이터
+interface Review {
+  id: number;
+  date: string;
+  comment: Comment[];
+}
+
+interface Comment {
+  id: number;
+  content: string;
+  tip: string;
 }
 
 function InsitePage() {
@@ -22,6 +35,8 @@ function InsitePage() {
   const [chokesCount, setChokesCount] = useState<number>(0);
   const [cryingCounts, setCryingCounts] = useState<number[]>(new Array(12).fill(0));
 
+  const [reviews, setReviews] = useState<Review[]>([]);
+
   useEffect(() => {
     fetchData(selectedDate);
   }, [selectedDate]);
@@ -29,6 +44,8 @@ function InsitePage() {
   const fetchData = async (date: Date) => {
     try {
       const formattedDate = date.toISOString().split("T")[0];
+
+      //통계 데이터 불러오기 
       const response = await axios.get<Post[]>(`http://localhost:3003/posts?date=${formattedDate}`);
       const data = response.data;
 
@@ -39,6 +56,13 @@ function InsitePage() {
       setFallsCount(falls);
       setChokesCount(chokes);
       setCryingCounts(counts);
+
+      //요약 데이터 불러오기 
+      const response2 = await axios.get<Review[]>(`http://localhost:3003/reviews?date=${formattedDate}`);
+      const data2 = response2.data;
+
+      // 가져온 데이터를 상태에 저장
+      setReviews(data2);
     } catch (error: any) {
       console.error("데이터를 가져오는 중 오류 발생:", error.message);
     }
@@ -66,14 +90,27 @@ function InsitePage() {
     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
   };
 
+  const series1 = [{ data: [fallsCount, chokesCount] }];
+
+  // 데이터에서 최대값 계산
+  const maxValue = Math.max(...series1[0].data);
+
   const options1: ApexOptions = {
     chart: { type: "bar", toolbar: { show: false } },
     plotOptions: { bar: { borderRadius: 4, horizontal: true } },
     title: { text: "위험 상황", align: "center" },
-    xaxis: { categories: ["낙상 위험", "질식 위험"] },
+    xaxis: {
+      categories: ["낙상 위험", "질식 위험"],
+      min: 0, // x축 시작 값
+      max: maxValue, // x축 끝 값 (데이터 범위에 맞게 설정)
+      tickAmount: maxValue, // 눈금 개수 (0, 1, 2, 3, 4)
+      labels: {
+        formatter: (value) => Math.round(Number(value)).toString(), // 정수로 변환
+      },
+    },
   };
-
-  const series1 = [{ data: [fallsCount, chokesCount] }];
+  
+  
 
   const options2: ApexOptions = {
     chart: { type: "line", toolbar: { show: false } },
@@ -131,16 +168,18 @@ function InsitePage() {
       </div>
 
 
-      <div className="w-80 max-w-md text-left">
+      <div className="w-80 h-100 max-w-md text-left">
         <p className="font-bold text-md mb-2">요약</p>
-        <div className="bg-[#AAF8B3] p-3 shadow rounded-[20px] mb-3">
-          <p className="text-xs font-bold mb-1">일주일간 12-14시 사이에 운 횟수가 가장 많았어요</p>
-          <p className="text-xs text-gray-600">일주일간 12건</p>
-        </div>
-        <div className="bg-[#AAF8B3] p-3 shadow rounded-[20px] mb-3">
-          <p className="text-xs font-bold mb-1">일주일간 배고파서 가장 많이 울었어요</p>
-          <p className="text-xs text-gray-600">일주일간 18건</p>
-        </div>
+        {reviews.map((review) => (
+          <div key={review.id}>
+            {review.comment.map((comment) => (
+              <div key={comment.id} className="bg-[#AAF8B3] p-3 shadow rounded-[20px] mb-3">
+              <p className="text-xs font-bold mb-1">{comment.content}</p>
+            <p className="text-xs text-gray-600">{comment.tip}</p>
+          </div>
+        ))}
+      </div>
+    ))}
       </div>
     </div>
   );
