@@ -60,13 +60,15 @@ export const CryCard = () => {
   const isEmpty = cryDataList.length === 0;
   const lastCryData = cryDataList[cryDataList.length - 1];
 
-  if (!isEmpty) {
-    const now = new Date();
-    const lastCryTime = new Date(lastCryData.createdAt);
-    const diff = now.getTime() - lastCryTime.getTime();
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    setMinutes(minutes);
-  }
+  useEffect(() => {
+    if (!isEmpty) {
+      const now = new Date();
+      const lastCryTime = new Date(lastCryData.createdAt);
+      const diff = now.getTime() - lastCryTime.getTime();
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      setMinutes(minutes);
+    }
+  }, []);
 
   return (
     <div className="mb-4 p-4 bg-green-100 rounded-lg flex items-center">
