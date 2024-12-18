@@ -28,6 +28,8 @@ export const CryCard = () => {
   const navigate = useNavigate();
 
   const [message, setMessage] = useState('');
+  const [minutes, setMinutes] = useState(0);
+
   const { cryDataList, setCryData } = useCryStore();
 
   useEffect(() => {
@@ -55,11 +57,16 @@ export const CryCard = () => {
     };
   }, []);
 
+  const isEmpty = cryDataList.length === 0;
   const lastCryData = cryDataList[cryDataList.length - 1];
-  const now = new Date();
-  const lastCryTime = new Date(lastCryData.createdAt);
-  const diff = now.getTime() - lastCryTime.getTime();
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+  if (!isEmpty) {
+    const now = new Date();
+    const lastCryTime = new Date(lastCryData.createdAt);
+    const diff = now.getTime() - lastCryTime.getTime();
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    setMinutes(minutes);
+  }
 
   return (
     <div className="mb-4 p-4 bg-green-100 rounded-lg flex items-center">
@@ -67,7 +74,7 @@ export const CryCard = () => {
       <div>
         <p className="text-lg font-semibold">{message === '' ? buttonWording.default : buttonWording[message]}</p>
         <p className="text-sm text-gray-500">
-          {message === '' ? `${minutes}분전 ${lastCryData.type} 상태` : '아이를 확인하러 와주세요'}
+          {message === '' && !isEmpty ? `${minutes}분전 ${lastCryData.type} 상태` : '아이를 확인하러 와주세요'}
         </p>
         <button
           className="mt-2 px-4 py-1 text-sm text-green-500 border border-green-500 rounded-full bg-white"
