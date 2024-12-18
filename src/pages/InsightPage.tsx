@@ -33,6 +33,7 @@ interface Comment {
 function InsitePage() {
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState<Date>(today);
+  const isToday = selectedDate.toDateString() === today.toDateString();
   const [fallsCount, setFallsCount] = useState<number>(0);
   const [chokesCount, setChokesCount] = useState<number>(0);
   const [cryingCounts, setCryingCounts] = useState<number[]>(new Array(12).fill(0));
@@ -153,12 +154,16 @@ function InsitePage() {
           />
         </div>
 
-        <button
-          onClick={() => changeDate(1)}
-          className="w-10 text-xl font-bold text-gray-700 hover:text-blue-500"
-        >
+        <div className="w-10">
+          {!isToday && (
+          <button
+            onClick={() => changeDate(1)} // 다음날로 이동
+            className="text-xl font-bold text-gray-700 hover:text-blue-500"
+          >
           ▶️
         </button>
+        )}
+        </div>
       </div>
 
       {/* 통계 데이터 */}
