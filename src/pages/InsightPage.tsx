@@ -6,6 +6,8 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import BackButton from '@/components/ui/button/backButton';
 import "@/components/ui/datePicker.css";
+import warningIcon from '@/assets/review/icon-danger.png';
+import cryingIcon from '@/assets/review/icon-baby-cry.png';
 
 //일별 로그 데이터
 interface Post {
@@ -172,12 +174,24 @@ function InsitePage() {
         <p className="font-bold text-md mb-2">요약</p>
         {reviews.map((review) => (
           <div key={review.id}>
-            {review.comment.map((comment) => (
-              <div key={comment.id} className="bg-[#AAF8B3] p-3 shadow rounded-[20px] mb-3">
-              <p className="text-xs font-bold mb-1">{comment.content}</p>
-            <p className="text-xs text-gray-600">{comment.tip}</p>
+
+          <div key={review.comment[0].id} className="bg-[#AAF8B3] p-3 shadow rounded-[20px] mb-3 flex items-center">
+            
+            <img src={warningIcon} className="w-6 h-6 mr-3 ml-1"/>
+            <div>
+              <p className="text-xs font-bold mb-1">{review.comment[0].content}</p>
+              <p className="text-xs text-gray-600">{review.comment[0].tip}</p>
+            </div>
           </div>
-        ))}
+
+          <div key={review.comment[1].id} className="bg-[#AAF8B3] p-3 shadow rounded-[20px] mb-3 flex items-center">
+            <img src={cryingIcon} className="w-6 h-6 mr-3 ml-1"/>
+            <div>
+              <p className="text-xs font-bold mb-1">{review.comment[1].content}</p>
+              <p className="text-xs text-gray-600">{review.comment[1].tip}</p>
+            </div>
+          </div>
+        
       </div>
     ))}
       </div>
