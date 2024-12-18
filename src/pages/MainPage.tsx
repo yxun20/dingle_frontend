@@ -1,9 +1,9 @@
 import crawlingBabyImage from '@/assets/crawlingBabyImage.svg'; // 아기 기어다니는 사진을 import합니다.
-import sleepingBabyImage from '@/assets/sleepingBabyImage.svg'; // 아기 자는 사진을 import합니다.
 import supermanBabyImage from '@/assets/supermanBabyImage.svg'; // 아기 슈퍼맨 사진을 import합니다.
 import cameraIcon from '@/assets/cameraIcon.svg'; // 카메라 아이콘을 import합니다.
 import myPageIcon from '@/assets/myPageIcon.svg'; // 마이페이지 아이콘을 import합니다.
 import { useNavigate } from 'react-router-dom';
+import { CryCard } from '@/components/ui/cryCard.tsx';
 
 function MainPage() {
   const navigate = useNavigate();
@@ -34,19 +34,7 @@ function MainPage() {
         <h2 className="text-xl font-bold mb-4">우리 아이의 상태는 ?</h2>
 
         {/* 아기 상태 카드 */}
-        <div className="mb-4 p-4 bg-green-100 rounded-lg flex items-center">
-          <img src={sleepingBabyImage} alt="Sleeping Baby" className="w-20 h-20 mr-4" />
-          <div>
-            <p className="text-lg font-semibold">아기가 새근새근 자고 있어요</p>
-            <p className="text-sm text-gray-500">30분 전 배고픔 상태</p>
-            <button
-              className="mt-2 px-4 py-1 text-sm text-green-500 border border-green-500 rounded-full bg-white"
-              onClick={() => navigate('/monitor-frequency')}
-            >
-              주파수 분석중 <span>&gt;</span>
-            </button>
-          </div>
-        </div>
+        <CryCard />
 
         <div className="p-4 bg-red-100 rounded-lg flex items-center border-2 border-red-400 mb-4">
           <img src={supermanBabyImage} alt="Superman Baby" className="w-20 h-20 mr-4" />
