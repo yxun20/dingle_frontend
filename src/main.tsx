@@ -16,6 +16,7 @@ import SignupForm from '@/pages/SignupForm';
 import Onboarding from '@/pages/Onboarding.tsx';
 import StartSignupForm from '@/pages/StartSignupForm.tsx';
 import MonitorPosePage from './pages/MonitorPosePage';
+import AudioPage from '@/pages/AudioPage.tsx';
 
 const routesConfig = [
   {
@@ -61,6 +62,10 @@ const routesConfig = [
   {
     path: '/StartSignupForm',
     element: <StartSignupForm />,
+  },
+  {
+    path: '/audio',
+    element: <AudioPage />,
   },
 ];
 
