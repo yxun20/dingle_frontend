@@ -71,15 +71,21 @@ export const CryCard = () => {
   }, []);
 
   return (
-    <div className="mb-4 p-4 bg-green-100 rounded-lg flex items-center">
+    <div
+      className={`mb-4 p-4  rounded-lg flex items-center ${message === '' ? 'bg-green-100' : 'bg-red-100 border-2 border-red-400'}`}
+    >
       <img src={sleepingBabyImage} alt="Sleeping Baby" className="w-20 h-20 mr-4" />
       <div>
-        <p className="text-lg font-semibold">{message === '' ? buttonWording.default : buttonWording[message]}</p>
+        <p className={`text-lg font-semibold ${message !== '' && 'text-red-500'}`}>
+          {message === '' ? buttonWording.default : buttonWording[message]}
+        </p>
         <p className="text-sm text-gray-500">
           {message === '' && !isEmpty ? `${minutes}분전 ${lastCryData.type} 상태` : '아이를 확인하러 와주세요'}
         </p>
         <button
-          className="mt-2 px-4 py-1 text-sm text-green-500 border border-green-500 rounded-full bg-white"
+          className={`mt-2 px-4 py-1 text-sm border  rounded-full bg-white ${
+            message === '' ? 'text-green-500 border-green-500' : 'text-red-500 border-red-500'
+          }`}
           onClick={() => navigate('/monitor-frequency')}
         >
           주파수 분석중 <span>&gt;</span>
