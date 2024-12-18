@@ -26,6 +26,17 @@ const Dashboard = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showAlerts, setShowAlerts] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsRecording(false);
+    setIsPlaying(false);
+  };
 
   
   const today = new Date(); // 오늘 날짜
@@ -51,6 +62,7 @@ const Dashboard = () => {
   //녹음 기능
   const handleRecordClick = async () => {
     
+    setIsModalOpen(true);
     // 상태 토글
     setIsRecording((prev) => !prev);
   };
@@ -58,6 +70,7 @@ const Dashboard = () => {
   //음악 기능
   const audioRef = useRef(new Audio(music));
   const handleSongClick = () => {
+    setIsModalOpen(true);
     if (isPlaying) {
       // 노래 정지
       console.log('노래 재생 정지');
@@ -95,6 +108,22 @@ const Dashboard = () => {
           <img className="w-full" src={isPlaying ? SongButtonActive : SongButton} />
         </button>
       </div>
+      {/* 모달 */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white w-[300px] p-5 rounded-lg shadow-lg">
+            <p className="text-center text-lg font-bold mb-4">
+              추가 기능 개발 중입니다.
+            </p>
+            <button
+              className="block mx-auto bg-[#50A65D] text-white px-4 py-2 rounded-lg"
+              onClick={closeModal}
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      )}
       <div className="flex items-center justify-between bg-white rounded-3xl p-5 shadow-md mb-5">
         <img src={moonSleepingImage} alt="Sleeping Moon" className="w-24 h-24" />
         <div className="flex flex-col items-start">
