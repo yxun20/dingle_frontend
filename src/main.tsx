@@ -17,6 +17,7 @@ import Onboarding from '@/pages/Onboarding.tsx';
 import StartSignupForm from '@/pages/StartSignupForm.tsx';
 import MonitorPosePage from './pages/MonitorPosePage';
 import AudioPage from '@/pages/AudioPage.tsx';
+import { ToastContainer } from 'react-toastify';
 
 const routesConfig = [
   {
@@ -73,6 +74,7 @@ const router = createBrowserRouter(routesConfig);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <ToastContainer />
     <RouterProvider router={router} />
   </StrictMode>
 );

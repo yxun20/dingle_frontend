@@ -2,6 +2,7 @@ import sleepingBabyImage from '@/assets/sleepingBabyImage.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useCryStore from '@/store/CryStore.ts';
+import { toast, Zoom } from 'react-toastify';
 
 const buttonWording = {
   default: '아기가 새근새근 자고 있어요',
@@ -43,6 +44,18 @@ export const CryCard = () => {
 
       setMessage(messageData.type);
       setCryData([...cryDataList, convertToColumn(messageData)]);
+
+      toast.error(buttonWording[messageData.type], {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Zoom,
+      });
     };
 
     // 서버에서 에러 발생 시
