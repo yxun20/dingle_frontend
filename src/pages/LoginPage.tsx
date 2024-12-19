@@ -37,10 +37,12 @@ function LoginPage() {
 
       // babyName이 비어있으면 유저 데이터 입력 화면으로 이동
       if (userInfo?.baby === null) {
-        navigate('/startsignupform'); // 유저 데이터 입력 화면으로 이동
+        navigate('/startsignupform'); // 유저 데이터 입력 화면으로 이동\
+        console.error('유저데이터 비어있음');
       } else {
         // 인증 성공 시 메인 페이지로 이동
         navigate('/');
+        console.error('유저데이터 있음');
       }
     } catch (err : any) {
       console.error('로그인 요청 실패:', err.message);
