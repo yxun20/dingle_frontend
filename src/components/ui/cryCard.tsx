@@ -2,7 +2,10 @@ import sleepingBabyImage from '@/assets/sleepingBabyImage.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useCryStore from '@/store/CryStore.ts';
+import AlertSound from '@/assets/Audio/AlertSound.mp3';
+
 import { toast, Zoom } from 'react-toastify';
+import useSound from 'use-sound';
 
 const buttonWording = {
   default: '아기가 새근새근 자고 있어요',
@@ -32,6 +35,7 @@ export const CryCard = () => {
   const [minutes, setMinutes] = useState(0);
 
   const { cryDataList, setCryData } = useCryStore();
+  const [play] = useSound(AlertSound);
 
   useEffect(() => {
     // SSE 연결 초기화
@@ -45,6 +49,7 @@ export const CryCard = () => {
       setMessage(messageData.type);
       setCryData([...cryDataList, convertToColumn(messageData)]);
 
+      play();
       toast.error(buttonWording[messageData.type], {
         position: 'top-center',
         autoClose: 5000,
