@@ -1,7 +1,7 @@
 import { create, StateCreator } from 'zustand';
 import { persist, PersistOptions } from 'zustand/middleware';
 
-type CryData = {
+export type CryData = {
   createdAt: Date;
   stomachache: string; //'0.24%'
   trim: string; //'2.33%'
