@@ -8,7 +8,9 @@ import httpClient from '@/lib/client/http-client';
 
 const MyPage = () => {
   const [babyName, setBabyName] = useState('아기이름');
-  const [birthDate, setBirthDate] = useState('생후 0일');
+  const [birthDate, setBirthDate] = useState('2000-01-01');  //서버에서 가져오눈 날짜 데이터 
+  const [babyAge, setBabyAge] = useState('생후 0일');  //계산한 애기 나이
+
   const [momPhone, setMomPhone] = useState('긴급연락처를 적어주세요');
   const [dadPhone, setDadPhone] = useState('긴급연락처를 적어주세요');
   const [isEditing, setIsEditing] = useState(false); // 수정 모달 표시 상태
@@ -20,7 +22,12 @@ const MyPage = () => {
         const { baby, parentContacts } = response.data;
 
         setBabyName(baby?.babyName || '아기이름');
-        setBirthDate(baby?.birthDate || '생후 0일');
+        setBirthDate(baby?.birthDate || '2000-01-01');
+
+        const calculatedDays = calculateDaysFromBirth(baby.birthDate);
+        setBabyAge(`생후 ${calculatedDays}일`);
+        
+
         setMomPhone(parentContacts?.momPhoneNumber || '긴급연락처를 적어주세요');
         setDadPhone(parentContacts?.dadPhoneNumber || '긴급연락처를 적어주세요');
       } catch (error) {
@@ -30,6 +37,15 @@ const MyPage = () => {
 
     fetchProfileData();
   }, []); 
+
+  //아기 나이 계산 함수 
+  const calculateDaysFromBirth = (birthDate: string) => {
+    const birth = new Date(birthDate); // baby.birthDate를 Date 객체로 변환
+    const today = new Date(); // 현재 날짜
+    const timeDifference = today.getTime() - birth.getTime(); // 밀리초 차이 계산
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // 일 수 계산
+    return daysDifference > 0 ? daysDifference : 0; // 음수 방지
+  };
 
   const handleEditClick = () => {
     setIsEditing(true); // 모달 열기
@@ -48,7 +64,7 @@ const MyPage = () => {
     };
     try {
       // POST 요청으로 데이터 전송
-      const response = await httpClient.post('/users/me', requestBody);
+      const response = await httpClient.put('/users/me', requestBody);
       console.log('유저데이터 저장 성공:', response.data);
 
     } catch (error) {
@@ -75,7 +91,7 @@ const MyPage = () => {
         {/* 아기 프로필 */}
         <ProfileCard
           name={babyName}
-          age={birthDate}
+          age={babyAge}
           imgSrc={babyProfile}
           alignment="left"
         />
