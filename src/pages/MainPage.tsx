@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { CryCard } from '@/components/ui/cryCard.tsx';
 import { useState, useRef } from 'react';
 import AlertSound from '@/assets/Audio/AlertSound.mp3';
+import { toast, Zoom } from 'react-toastify';
 
 function MainPage() {
   const navigate = useNavigate();
@@ -16,6 +17,17 @@ function MainPage() {
   const teston =  () => {
     setIsTestOn(true);
     audioRef.current?.play();
+    toast.error('아기가 질식의 위험이 있어요!', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      transition: Zoom,
+    });
   };
 
 
