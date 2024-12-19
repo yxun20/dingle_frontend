@@ -16,6 +16,7 @@ const MonitorFrequencyPage = () => {
   const lastCryData = cryDataList[cryDataList.length - 1];
 
   useEffect(() => {
+    if (isEmpty) return;
     const highest = getHighestPercentageField(lastCryData);
     setHighest(highest.field);
   }, []);
