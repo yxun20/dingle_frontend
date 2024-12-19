@@ -1,6 +1,7 @@
 import httpClient from '@/lib/client/http-client';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Typewriter } from "react-simple-typewriter";
 
 const StartSignupForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -67,9 +68,9 @@ const StartSignupForm: React.FC = () => {
   return (
     <div className="w-[386px] h-[823px] p-6 mx-auto border border-gray-300 rounded-lg shadow-lg flex flex-col">
       <div>
-        <h2 className="text-2xl font-bold mb-2">회원 정보 입력</h2>
-        <p className="text-sm text-gray-500 mb-5">
-          딩글을 사용하기 위해 회원 정보를 입력해주세요
+        <h2 className="text-2xl font-bold mb-2">환영합니다!</h2>
+        <p className="text-gray-500 mb-5">
+          <Typewriter words={['앱을 시작하기 전에 필요한 정보를 입력해 주세요.']}/>
         </p>
         <form>
           <div className="mb-4">
