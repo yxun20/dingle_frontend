@@ -33,7 +33,7 @@ const SignupForm = () => {
       });
       if (response.status === 200) {
         console.log('폼 제출 완료:', response.data);
-        alert('회원가입 성공!');
+        //alert('회원가입 성공!');
       }
       // 인증 성공 시 메인 페이지로 이동
       navigate('/login');

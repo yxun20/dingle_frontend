@@ -1,6 +1,7 @@
 import BackButton from '@/components/ui/button/backButton';
 import AutoRenderWebcam from '@/components/ui/webcam/AutoRenderWebcam.tsx';
 import { useSearchParams } from 'react-router-dom';
+import Video1 from '@/assets/babyVideo/gif1.gif'
 import Video2 from '@/assets/babyVideo/gif2.gif'
 import DangerIcon from '@/assets/review/icon-danger.png';
 import React, { useState, useEffect } from "react";
