@@ -27,7 +27,7 @@ httpClient.interceptors.response.use(
   response => response,
   error => {
     if (error.response?.status === 403) {
-      alert('403 에러');
+      //alert('403 에러');
     }
     return Promise.reject(error);
   }

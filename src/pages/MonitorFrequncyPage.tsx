@@ -3,6 +3,7 @@ import irritationIcon from '../assets/irritationIcon.png';
 import painIcon from '../assets/painIcon.png';
 import sleepinessIcon from '../assets/sleepinessIcon.png';
 import discomfortIcon from '../assets/discomfortIcon.png';
+import babycring from '@/assets/babycrying.png';
 
 import BackButton from '@/components/ui/button/backButton';
 import useCryStore, { CryData } from '@/store/CryStore.ts';
@@ -56,8 +57,11 @@ const MonitorFrequencyPage = () => {
           </div>
         </div>
       ) : (
-        <div className="w-full max-w-md bg-white p-4 rounded-lg shadow-md mt-2">
+        <div className='flex flex-col align-center'>
+        <img src={babycring} className='mt-20 mr-8 mb-32'/>
+        <div className="w-full max-w-md bg-white p-4 rounded-lg shadow-md mt-30 ">
           <p className="text-xs font-bold mb-4">울음 실시간 분석</p>
+          
           <div className="flex items-center mb-3">
             <div className="flex flex-col items-center mr-3 w-8">
               <img src={hungerIcon} alt="Hunger Icon" className="w-4 h-4" />
@@ -123,6 +127,7 @@ const MonitorFrequencyPage = () => {
             </div>
             <span className="ml-3 text-sm font-semibold">{lastCryData.discomfort}</span>
           </div>
+        </div>
         </div>
       )}
     </div>

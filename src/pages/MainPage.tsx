@@ -17,9 +17,9 @@ function MainPage() {
   const teston =  () => {
     setIsTestOn(true);
     audioRef.current?.play();
-    toast.error('아기가 질식의 위험이 있어요!', {
+    toast.error('아기가 질식의 위험이 있어요!!', {
       position: 'top-center',
-      autoClose: 2000,
+      autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
