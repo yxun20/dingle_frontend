@@ -14,7 +14,10 @@ const BabyInfoForm: React.FC<BabyInfoFormProps> = ({ onSave, onClose }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg w-[300px] ">
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+    >
+    <div className="bg-white p-6 rounded-lg shadow-lg w-[300px]">
       <h2 className="text-lg font-bold mb-4">정보 수정</h2>
       <form>
         <div className="mb-4">
@@ -76,6 +79,7 @@ const BabyInfoForm: React.FC<BabyInfoFormProps> = ({ onSave, onClose }) => {
           저장
         </button>
       </div>
+    </div>
     </div>
   );
 };
