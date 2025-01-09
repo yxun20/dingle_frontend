@@ -6,7 +6,7 @@ interface BabyInfoFormProps {
   onClose: () => void;
 }
 
-const BabyInfoForm: React.FC<BabyInfoFormProps> = ({ onSave, onClose }) => {
+const BabyInfoForm = ({ onSave, onClose } : BabyInfoFormProps) => {
   const { babyName, birthDate, momPhone, dadPhone, setBabyInfo } = useBabyStore();
 
   const handleChange = (key: string, value: string) => {
