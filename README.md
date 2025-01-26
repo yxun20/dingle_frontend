@@ -15,8 +15,6 @@ CNN 기반 울음소리 분석 및 Pose 탐지를 통한 스마트 육아 모니
 - 일일 통계 분석 제공 <br> <br>
 
 
-
-<br><br>
 ## 💻 개발환경 <br>
 React + TypeScript + Vite <br> <br>
 
