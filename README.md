@@ -23,7 +23,7 @@ React + TypeScript + Vite <br> <br>
 
 ## 📢 시스템 아키텍처 <br>
 ![image](https://github.com/user-attachments/assets/ac590bf7-5c3f-4df1-a14d-40f7176704bd)
-
+<br><br>
 
 
 ## 🎞️ 시연 영상 <br>
