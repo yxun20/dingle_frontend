@@ -8,5 +8,15 @@ CNN 기반 울음소리 분석 및 Pose 탐지를 통한 스마트 육아 모니
 
 
 <br><br>
-💻 개발 환경
+## 💻 개발환경 <br>
 React + TypeScript + Vite
+
+
+## 💻 주요 기능 <br>
+- 실시간 울음 분석 - 배고픔, 불편함, 트름, 아픔, 피곤함으로 분류
+- 실시간 pose 추정을 통한 질식사 및 낙상 방지
+- 일일 통계 분석 제공
+
+
+https://github.com/user-attachments/assets/10213c31-4f4d-4e96-b0c9-1e4329925902
+
