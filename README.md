@@ -4,8 +4,7 @@
 CNN 기반 울음소리 분석 및 Pose 탐지를 통한 스마트 육아 모니터링 시스템 <br>
 <br>
 
-
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/81a7f0ff-3650-49b8-9f82-78eec063b435/abae00c6-386d-4f22-b381-361fa745fc87/image.png)
+![image](https://github.com/user-attachments/assets/0c798f0d-7176-435d-9cf2-7d7d0b1b3515)
 
 
 
