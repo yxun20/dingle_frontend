@@ -1,3 +1,15 @@
+# 뒹글뒹글 편안한 밤, 딩글이와 함께
+
+## 📚 Introduce <br>
+CNN 기반 울음소리 분석 및 Pose 탐지를 통한 스마트 육아 모니터링 시스템 <br>
+<br>
+
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/81a7f0ff-3650-49b8-9f82-78eec063b435/abae00c6-386d-4f22-b381-361fa745fc87/image.png)
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
