@@ -44,7 +44,7 @@ CNN 기반 울음소리 분석과 실시간 자세 추정 기술을 결합하여
 - AWS EC2, S3, RDS, CodeDeploy, CloudFront  
 
 ## 🏗 프로젝트 구조
-\`\`\`text
+
 .
 ├── README.md
 ├── api
@@ -111,7 +111,7 @@ CNN 기반 울음소리 분석과 실시간 자세 추정 기술을 결합하여
     ├── package.json
     ├── tsconfig.build.json
     └── tsconfig.json
-\`\`\`
+
 
 ## 🏛️ 데이터베이스 ERD
 ![db](https://github.com/user-attachments/assets/61d1adfb-783f-49f4-bcc8-da462f435103)
