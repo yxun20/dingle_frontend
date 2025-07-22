@@ -1,4 +1,4 @@
-```markdown
+
 # 딩글딩글: 아기와 함께하는 편안한 밤
 
 <img width="1515" alt="스크린샷 2025-06-19 오후 11 14 05" src="https://github.com/user-attachments/assets/e1dca51b-b70b-4849-b335-1a4d33b54322" />
@@ -131,4 +131,4 @@ CNN 기반 울음소리 분석과 실시간 자세 추정 기술을 결합하여
 | **담당 역할** | 프론트엔드 / 백엔드 | 프론트엔드 | 프론트엔드 / 백엔드 | 인공지능 / 백엔드 | 인공지능 |
 | **프로필**   | <img src="https://avatars.githubusercontent.com/yxun20" width="110" /> | <img src="https://avatars.githubusercontent.com/9ye1" width="110" /> | <img src="https://avatars.githubusercontent.com/HyunTaek5" width="110" /> | <img src="https://avatars.githubusercontent.com/yubin012" width="110" /> | <img src="https://avatars.githubusercontent.com/Gyeom-s" width="110" /> |
 | **GitHub**    | [@yxun20](https://github.com/yxun20) | [@9ye1](https://github.com/9ye1) | [@HyunTaek5](https://github.com/HyunTaek5) | [@yubin012](https://github.com/yubin012) | [@Gyeom-s](https://github.com/Gyeom-s) |
-```
+
